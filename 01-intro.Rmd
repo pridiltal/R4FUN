@@ -1,21 +1,84 @@
 # Introduction {#intro}
 
-You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
+## Installing R
 
-Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+- **Step 1:** First download R freely from the Comprehensive R Archive Network (CRAN) [https://cran.r-project.org/](https://cran.r-project.org/).
+(At the moment of writing, R 4.0.2  is the latest version. Choose the most recent one.)
 
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
-par(mar = c(4, 4, .1, .1))
-plot(pressure, type = 'b', pch = 19)
+- **Step 2:** Then install R Studio’s IDE (stands for integrated development environment), a powerful user interface for R from [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/). Get the Open Source Edition of RStudio Desktop. RStudio allows you to run R in a more user-friendly environment.
+
+   - You need to install **both** R and Rstudio to use RStudio.
+
+   - If you have a pre-existing installation of R and/or RStudio, I highly recommend that you re install both and get as current as possible. 
+
+- **Step 3:** Then open **Rstudio**.
+
+
+## RStudio layout
+
+The RStudio interface consists of four windows (see Figure 1 and 2).
+
+1.	Bottom left: console window (also called command window). **This is where you type and run all your R commands**
+
+2.	Top left: editor window (also called script window). 
+
+3.	Top right: workspace / history window.
+
+4.	Bottom right: Files / plots / packages / help window.
+
+
+```{r   out.width = "90%", echo = FALSE, fig.align='center'}
+knitr::include_graphics("figure/Rstudio1.png")
 ```
 
-Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
 
-```{r nice-tab, tidy=FALSE}
-knitr::kable(
-  head(iris, 20), caption = 'Here is a nice table!',
-  booktabs = TRUE
-)
+```{r   out.width = "90%", echo = FALSE, fig.align='center'}
+knitr::include_graphics("figure/Rstudio2.png")
 ```
 
-You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
+
+Now you are familiar with the layout. Let's begin with R basics.
+
+
+## Installing an R Package
+
+<!-- http://jtleek.com/modules/01_DataScientistToolbox/02_09_installingRPackages/#3-->
+
+- The primary location for obtaining R packages is CRAN
+
+- Packages can be installed with the `install.packages()` function in R
+
+- To install a single package, pass the name of the package to the `install.packages()` function as the first argument
+
+The following the code installs the `tidyverse` package from CRAN
+
+```{r eval = FALSE}
+install.packages("tidyverse")
+```
+
+- This command downloads the `tidyverse` package from CRAN and installs it on your computer
+
+- Any packages on which this package depends will also be downloaded and installed
+
+- **Installing the tidyverse package could take several minutes. You only need to do this once**.
+
+
+## Loading an R Packages
+
+- Installing a package does not make it immediately available to you in R; you must load the package
+
+- The `library()` function is used to load packages into R
+
+- The following code is used to load the tidyverse package into R
+
+- **NOTE:** Do not put the package name in quotes!
+
+```{r}
+library(tidyverse)
+```
+
+- Some packages produce messages when they are loaded (but some don't)
+
+<!-- https://rpubs.com/venkatritch/333327-->
+
+

@@ -1,0 +1,110 @@
+# Differentiation 
+
+First, we take the equation as an expression
+
+```{r}
+f <- expression(x^2)
+```
+
+To calculate first derivative of $f$, we use `D()` function and `x` to specify that derivation has to be carried out with respect to 
+$x$.
+
+```{r}
+f_1 <- D(f, "x")
+print(f_1)
+```
+
+
+Sketch the graph of $f$ and $f^\prime$
+
+```{r}
+library(ggplot2)
+x <- seq(-1, 1, by = 0.1)
+y <- eval(f)
+x <- seq(-1, 1, by = 0.1)
+y1 <- eval(f_1)
+data <- data.frame(x, y, y1)
+head(data)
+
+p <- ggplot(data, aes(x = x, y = y)) +
+  geom_line()
+print(p)
+```
+
+```{r}
+q <- ggplot(data, aes(x = x, y = y1)) +
+  geom_line()
+print(q)
+```
+
+
+## Higher Derivatives
+
+The following R command can be used to find second derivative of the above $f$.
+
+
+```{r}
+f_2 <- D(D(f, "x"), "x")
+print(f_2)
+```
+
+
+```{r fig.height=3, fig.width=3}
+x <- seq(-1, 1, by = 0.1)
+y2 <- eval(f_2)
+
+data <- data.frame(x, y, y1, y2)
+head(data)
+
+p <- ggplot(data, aes(x = x, y = y)) +
+  geom_line()
+print(p)
+
+
+q <- ggplot(data, aes(x = x, y = y1)) +
+  geom_line(colour = "red")
+print(q)
+
+r <- ggplot(data, aes(x = x, y = y2)) +
+  geom_line(colour = "blue")
+print(r)
+```
+
+
+
+## Partial Derivatives
+
+If the expression is having more than one independent variable, we can calculate differentiation with respect to each of them.
+
+
+<!-- https://www.datamentor.io/r-programming/3d-plot/-->
+
+
+
+
+```{r}
+f <- expression(x^2 + y^2)
+
+x <- y <- seq(-3, 3, length = 20)
+surface <- function(x, y) {
+  eval(f)
+}
+z <- outer(x, y, surface)
+persp(x, y, z)
+```
+
+Differentiate with respect to `x`
+
+```{r}
+D(f, "x")
+```
+
+
+Differentiate with respect to `y`
+
+```{r}
+D(f, "y")
+```
+
+
+

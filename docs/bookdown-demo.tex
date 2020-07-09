@@ -139,94 +139,288 @@
 \hypertarget{intro}{%
 \chapter{Introduction}\label{intro}}
 
-You can label chapter and section titles using \texttt{\{\#label\}} after them, e.g., we can reference Chapter \ref{intro}. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \ref{methods}.
+\hypertarget{installing-r}{%
+\section{Installing R}\label{installing-r}}
 
-Figures and tables with captions will be placed in \texttt{figure} and \texttt{table} environments, respectively.
+\begin{itemize}
+\item
+  \textbf{Step 1:} First download R freely from the Comprehensive R Archive Network (CRAN) \url{https://cran.r-project.org/}.
+  (At the moment of writing, R 4.0.2 is the latest version. Choose the most recent one.)
+\item
+  \textbf{Step 2:} Then install R Studio's IDE (stands for integrated development environment), a powerful user interface for R from \url{https://rstudio.com/products/rstudio/download/}. Get the Open Source Edition of RStudio Desktop. RStudio allows you to run R in a more user-friendly environment.
+
+  \begin{itemize}
+  \item
+    You need to install \textbf{both} R and Rstudio to use RStudio.
+  \item
+    If you have a pre-existing installation of R and/or RStudio, I highly recommend that you re install both and get as current as possible.
+  \end{itemize}
+\item
+  \textbf{Step 3:} Then open \textbf{Rstudio}.
+\end{itemize}
+
+\hypertarget{rstudio-layout}{%
+\section{RStudio layout}\label{rstudio-layout}}
+
+The RStudio interface consists of four windows (see Figure 1 and 2).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Bottom left: console window (also called command window). \textbf{This is where you type and run all your R commands}
+\item
+  Top left: editor window (also called script window).
+\item
+  Top right: workspace / history window.
+\item
+  Bottom right: Files / plots / packages / help window.
+\end{enumerate}
+
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/Rstudio1} \end{center}
+
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/Rstudio2} \end{center}
+
+Now you are familiar with the layout. Let's begin with R basics.
+
+\hypertarget{installing-an-r-package}{%
+\section{Installing an R Package}\label{installing-an-r-package}}
+
+\begin{itemize}
+\item
+  The primary location for obtaining R packages is CRAN
+\item
+  Packages can be installed with the \texttt{install.packages()} function in R
+\item
+  To install a single package, pass the name of the package to the \texttt{install.packages()} function as the first argument
+\end{itemize}
+
+The following the code installs the \texttt{tidyverse} package from CRAN
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{.1}\NormalTok{, }\FloatTok{.1}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
+\begin{itemize}
+\item
+  This command downloads the \texttt{tidyverse} package from CRAN and installs it on your computer
+\item
+  Any packages on which this package depends will also be downloaded and installed
+\item
+  \textbf{Installing the tidyverse package could take several minutes. You only need to do this once}.
+\end{itemize}
 
-{\centering \includegraphics[width=0.8\linewidth]{bookdown-demo_files/figure-latex/nice-fig-1} 
+\hypertarget{loading-an-r-packages}{%
+\section{Loading an R Packages}\label{loading-an-r-packages}}
 
-}
-
-\caption{Here is a nice figure!}\label{fig:nice-fig}
-\end{figure}
-
-Reference a figure by its code chunk label with the \texttt{fig:} prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can reference tables generated from \texttt{knitr::kable()}, e.g., see Table \ref{tab:nice-tab}.
+\begin{itemize}
+\item
+  Installing a package does not make it immediately available to you in R; you must load the package
+\item
+  The \texttt{library()} function is used to load packages into R
+\item
+  The following code is used to load the tidyverse package into R
+\item
+  \textbf{NOTE:} Do not put the package name in quotes!
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}
-  \KeywordTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'Here is a nice table!'}\NormalTok{,}
-  \DataTypeTok{booktabs =} \OtherTok{TRUE}
-\NormalTok{)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{table}
+\begin{itemize}
+\tightlist
+\item
+  Some packages produce messages when they are loaded (but some don't)
+\end{itemize}
 
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}[t]{rrrrl}
-\toprule
-Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-\midrule
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\addlinespace
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-4.6 & 3.4 & 1.4 & 0.3 & setosa\\
-5.0 & 3.4 & 1.5 & 0.2 & setosa\\
-4.4 & 2.9 & 1.4 & 0.2 & setosa\\
-4.9 & 3.1 & 1.5 & 0.1 & setosa\\
-\addlinespace
-5.4 & 3.7 & 1.5 & 0.2 & setosa\\
-4.8 & 3.4 & 1.6 & 0.2 & setosa\\
-4.8 & 3.0 & 1.4 & 0.1 & setosa\\
-4.3 & 3.0 & 1.1 & 0.1 & setosa\\
-5.8 & 4.0 & 1.2 & 0.2 & setosa\\
-\addlinespace
-5.7 & 4.4 & 1.5 & 0.4 & setosa\\
-5.4 & 3.9 & 1.3 & 0.4 & setosa\\
-5.1 & 3.5 & 1.4 & 0.3 & setosa\\
-5.7 & 3.8 & 1.7 & 0.3 & setosa\\
-5.1 & 3.8 & 1.5 & 0.3 & setosa\\
-\bottomrule
-\end{tabular}
-\end{table}
+\hypertarget{differentiation}{%
+\chapter{Differentiation}\label{differentiation}}
 
-You can write citations, too. For example, we are using the \textbf{bookdown} package \citep{R-bookdown} in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+First, we take the equation as an expression
 
-\hypertarget{literature}{%
-\chapter{Literature}\label{literature}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\KeywordTok{expression}\NormalTok{(x}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-Here is a review of existing methods.
+To calculate first derivative of \(f\), we use \texttt{D()} function and \texttt{x} to specify that derivation has to be carried out with respect to
+\(x\).
 
-\hypertarget{methods}{%
-\chapter{Methods}\label{methods}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{D}\NormalTok{(f, }\StringTok{"x"}\NormalTok{)}
+\KeywordTok{print}\NormalTok{(f_}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-We describe our methods in this chapter.
+\begin{verbatim}
+## 2 * x
+\end{verbatim}
+
+Sketch the graph of \(f\) and \(f^\prime\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{eval}\NormalTok{(f)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{y1 <-}\StringTok{ }\KeywordTok{eval}\NormalTok{(f_}\DecValTok{1}\NormalTok{)}
+\NormalTok{data <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(x, y, y1)}
+\KeywordTok{head}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      x    y   y1
+## 1 -1.0 1.00 -2.0
+## 2 -0.9 0.81 -1.8
+## 3 -0.8 0.64 -1.6
+## 4 -0.7 0.49 -1.4
+## 5 -0.6 0.36 -1.2
+## 6 -0.5 0.25 -1.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(data, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
+\KeywordTok{print}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{q <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(data, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y1)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
+\KeywordTok{print}\NormalTok{(q)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\hypertarget{higher-derivatives}{%
+\section{Higher Derivatives}\label{higher-derivatives}}
+
+The following R command can be used to find second derivative of the above \(f\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\KeywordTok{D}\NormalTok{(}\KeywordTok{D}\NormalTok{(f, }\StringTok{"x"}\NormalTok{), }\StringTok{"x"}\NormalTok{)}
+\KeywordTok{print}\NormalTok{(f_}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{y2 <-}\StringTok{ }\KeywordTok{eval}\NormalTok{(f_}\DecValTok{2}\NormalTok{)}
+
+\NormalTok{data <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(x, y, y1, y2)}
+\KeywordTok{head}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      x    y   y1 y2
+## 1 -1.0 1.00 -2.0  2
+## 2 -0.9 0.81 -1.8  2
+## 3 -0.8 0.64 -1.6  2
+## 4 -0.7 0.49 -1.4  2
+## 5 -0.6 0.36 -1.2  2
+## 6 -0.5 0.25 -1.0  2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(data, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
+\KeywordTok{print}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{q <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(data, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y1)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{colour =} \StringTok{"red"}\NormalTok{)}
+\KeywordTok{print}\NormalTok{(q)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-10-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(data, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y2)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{colour =} \StringTok{"blue"}\NormalTok{)}
+\KeywordTok{print}\NormalTok{(r)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-10-3.pdf}
+
+\hypertarget{partial-derivatives}{%
+\section{Partial Derivatives}\label{partial-derivatives}}
+
+If the expression is having more than one independent variable, we can calculate differentiation with respect to each of them.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\KeywordTok{expression}\NormalTok{(x}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{y}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+
+\NormalTok{x <-}\StringTok{ }\NormalTok{y <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DataTypeTok{length =} \DecValTok{20}\NormalTok{)}
+\NormalTok{surface <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y) \{}
+  \KeywordTok{eval}\NormalTok{(f)}
+\NormalTok{\}}
+\NormalTok{z <-}\StringTok{ }\KeywordTok{outer}\NormalTok{(x, y, surface)}
+\KeywordTok{persp}\NormalTok{(x, y, z)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+Differentiate with respect to \texttt{x}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{D}\NormalTok{(f, }\StringTok{"x"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 2 * x
+\end{verbatim}
+
+Differentiate with respect to \texttt{y}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{D}\NormalTok{(f, }\StringTok{"y"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 2 * y
+\end{verbatim}
+
+\hypertarget{statistical-distributions}{%
+\chapter{Statistical Distributions}\label{statistical-distributions}}
 
 \hypertarget{applications}{%
 \chapter{Applications}\label{applications}}
-
-Some \emph{significant} applications are demonstrated in this chapter.
-
-\hypertarget{example-one}{%
-\section{Example one}\label{example-one}}
-
-\hypertarget{example-two}{%
-\section{Example two}\label{example-two}}
 
 \hypertarget{final-words}{%
 \chapter{Final Words}\label{final-words}}

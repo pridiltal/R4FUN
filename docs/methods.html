@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="literature.html"/>
+<link rel="prev" href="differentiation.html"/>
 <link rel="next" href="applications.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -131,8 +131,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Fundamentals of Mathematics and Statistics with R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>2</b> Literature</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#installing-r"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#rstudio-layout"><i class="fa fa-check"></i><b>1.2</b> RStudio layout</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#installing-an-r-package"><i class="fa fa-check"></i><b>1.3</b> Installing an R Package</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#loading-an-r-packages"><i class="fa fa-check"></i><b>1.4</b> Loading an R Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="differentiation.html"><a href="differentiation.html"><i class="fa fa-check"></i><b>2</b> Differentiation</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="differentiation.html"><a href="differentiation.html#higher-derivatives"><i class="fa fa-check"></i><b>2.0.1</b> Higher Derivatives</a></li>
+<li class="chapter" data-level="2.0.2" data-path="differentiation.html"><a href="differentiation.html#partial-derivatives"><i class="fa fa-check"></i><b>2.0.2</b> Partial Derivatives</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>3</b> Methods</a></li>
 <li class="chapter" data-level="4" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>4</b> Applications</a><ul>
 <li class="chapter" data-level="4.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>4.1</b> Example one</a></li>
@@ -167,7 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="literature.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="differentiation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="applications.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -199,7 +207,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-method.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-Statistics.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -218,6 +226,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
