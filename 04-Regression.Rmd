@@ -1,0 +1,239 @@
+#  Linear Regression in R {-}
+\pagenumbering{arabic}
+
+
+```{r initialreg, echo = FALSE, cache = FALSE, include = FALSE}
+library(knitr)
+opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  echo = TRUE,
+  fig.path = 'figure/',
+  cache.path = 'cache/',
+  fig.align = 'center',
+  fig.show = 'hold',
+  cache = FALSE,
+  external = TRUE,
+  dev = "png",
+  fig.height = 5,
+  fig.width = 10
+)
+
+
+library(tidyverse)
+library(ggpubr)
+
+```
+
+In many practical situations we want to identify various types of relationships between variables. **Regression analysis** is a statistical technique for investigating and **modeling the relationship between variables**.
+
+**Linear regression** attempts to model the relationship between a scalar response (or dependent variable) and one or more explanatory variables (or independent variables) by fitting a **linear equation** to observed data. The case of one explanatory variable is called **simple linear regression.**
+
+
+## Loading required R packages
+
+The following R packages are required for this chapter:
+
+  - `ggplot2` for data visualization
+  - `datarium` data bank for statistical analysis and visualization
+  - The `ggpairs()` function of the `GGally` package allows to build a great scatterplot matrix.
+  
+```{r }
+
+library(ggplot2)
+library(datarium)
+## To learn more about the dataset
+# ?marketing
+
+library(GGally)
+```
+
+- We are going to use the marketing data set available in `datarium` package, which contains the impact of the amount of money spent on three advertising medias (youtube, Facebook and newspaper) on sales.
+
+
+## Load Data set
+
+```{r}
+data(marketing)
+head(marketing)
+summary(marketing)
+
+```
+
+## Explore data
+
+### Scatterplot
+
+- Usually, the first step in regression analysis is to construct a scatter plot (or scatter matrix).
+
+```{r}
+ggplot(data = marketing, aes(x = facebook, y = sales)) +
+  geom_point() +
+  theme(aspect.ratio = 1)+
+  xlab("Sales")+
+  ylab("facebook")
+```
+
+### Scatterplot matrix
+
+   - The `ggpairs()` function of the `GGally` package allows to build a great scatterplot matrix.
+   - Scatterplots of each pair of numeric variable are drawn on the left part of the figure.
+   - Pearson correlation is displayed on the right.
+   - Variable distribution is available on the diagonal.
+
+```{r}
+# Check correlations (as scatterplots), distribution and print corrleation coefficient 
+
+ggpairs(marketing, title="correlogram with ggpairs()") +
+   theme(aspect.ratio = 1)
+
+```
+
+- The term $corr$ is the Pearson product-moment correlation coefficient ($r$).
+- It is a measure of the **linear** correlation of two variables.
+- It is a number that ranges from -1 to 0 to +1, representing th strength of the linear relationship between the variables. 
+- An $r$ value of $+1$ denotes a perfect **linear** positive relationship between two variables.
+- An $r$ value of $-1$ denotes a perfect **linear** negative relationship between two variables, which indicates an inverse relationship between two variables: as one variable gets larger, the other gets smaller.
+- An $r$ value of 0 means no **linear** relationship is present between the two variables (There can be a non-linear relationship.)
+
+## Simple Linear Regression
+
+- The most elementary regression model is called **simple linear regression**.
+
+- The variable to be predicted is called the *dependent variable* an is denoted by $y$.
+- The *predictor* is called the *independent variable* or *explanatory variable* and is denoted by $x$
+- In simple *linear* regression analysis, only a strait-line relationship between two variables is examined.
+
+
+```{r}
+
+#lm(y ~ x)
+reg <- lm(sales ~ facebook,  data = marketing)
+
+reg
+
+summary(reg)
+```
+
+### Residual Analysis
+
+```{r}
+par(mfrow = c(2,2))
+plot(reg)
+```
+
+- You want these plots to display random residuals (no patterns) that are uncorrelated and uniform. 
+
+- Generally speaking, if you see patterns in the residuals, your model has a problem, and you might not be able to trust the results.
+
+- Heteroscedasticity produces a distinctive fan or cone shape in residual plots. 
+
+- To check for heteroscedasticity, you need to assess the residuals by fitted value plots specifically. 
+
+- Typically, the telltale pattern for heteroscedasticity is that as the fitted values increases, the variance of the residuals also increases.
+
+
+Read more about residual analysis:
+
+- Montgomery, D. C., Peck, E. A., & Vining, G. G. (2012). Introduction to linear regression analysis (Vol. 821). John Wiley & Sons.
+
+## Multiple Linear Regression
+
+- Regression models with more than one independent variable can be explored by using multiple regression models.
+
+
+- We want to build a model for estimating sales based on the advertising budget invested in youtube, facebook and newspaper, as follow:
+
+$$sales = \beta_0 + \beta_1*youtube + \beta_2*facebook + \beta_3*newspaper$$
+
+You can compute the model coefficients in R as follow:
+
+```{r}
+m_reg <- lm(sales ~ youtube + facebook + newspaper, data = marketing)
+summary(m_reg)
+```
+
+### How to test if your linear model has a good fit?
+
+- Most common value to check how good is your model is the coefficient of determinations or $R^2$
+
+- As we have seen in simple linear regression, the overall quality of the model can be assessed by examining the R-squared ($R^2$).
+
+- $R^2=0.05602$ means  that the model explains only 5% of the data variability.
+
+- $R^2$ represents the proportion of variance, in the outcome variable $y$, that may be predicted by knowing the value of the $x$ variables. 
+- An $R^2$ value close to 1 indicates that the model explains a large portion of the variance in the outcome variable.
+
+- The second one has an $R^2$ of 0.89, and the model can explain $89\%$ of the total variability. 
+
+- In the regression summary output  notice that there's two different $R^2$, one multiple and one adjusted.
+
+- One problem with this $R^2$ is that it will always increase when more variables are added to the model, even if those variables are only weakly associated with the response (i.e.  these variables don’t add anything to your predictions)
+
+
+- For this reason, the **adjusted** $R^2$ is probably better to look at if you are adding more than one variable to the model, since it only increases if it reduces the overall error of the predictions.
+
+- The adjustment in the **Adjusted R Square** value in the summary output is a correction for the number of x variables included in the prediction model.
+
+
+**NOTE**
+
+*In our example, with youtube, newspaper and facebook predictor variables, the adjusted* $R^2 = 0.89$, *meaning that "89% of the variance in the measure of sales can be predicted by youtube, newspaper and facebook advertising budgets.*
+
+*This model is better than the simple linear model with only facebook, which had an adjusted* $R^2$ *of 0.05.*
+
+
+
+### Don’t forget to look at the residuals
+
+- You can have a pretty good $R^2$ in your model, but let’s not rush to conclusions here. 
+
+- Ideally, when you plot the residuals, they should look random. Otherwise, it means that maybe there is a hidden pattern that the linear model is not considering. 
+
+```{r}
+par(mfrow = c(2,2))
+plot(m_reg)
+
+```
+
+## Prediction for new data set
+
+
+- Using the above model, we can predict the sales for a new advertising budget.
+
+```{r}
+new.budget <- data.frame(
+  youtube = c(150, 200, 100),
+  facebook = c( 150, 100, 200),
+  newspaper = c(0,0,0)
+)
+new.budget
+predict(m_reg, new.budget)
+
+```
+
+**Simple Linear regression**
+
+```{r}
+
+new.facebook <- data.frame(
+  facebook = c(50, 100, 200)
+)
+
+predict(reg, new.facebook)
+
+```
+
+\newpage
+## References
+
+[https://www.scribbr.com/statistics/linear-regression-in-r/](https://www.scribbr.com/statistics/linear-regression-in-r/)
+
+
+https://statisticsbyjim.com/regression/heteroscedasticity-regression/
+
+\newpage
+
+hypothesis testing part
+
+http://www.sthda.com/english/articles/40-regression-analysis/168-multiple-linear-regression-in-r/

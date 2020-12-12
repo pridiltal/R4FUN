@@ -1,0 +1,34 @@
+# mtcars
+
+Cars Dataset: https://www.rpubs.com/dksmith01/cars
+
+mtcars descriptive analysis: https://rstudio-pubs-static.s3.amazonaws.com/481654_883a4b47c9b244d4859dd1db235f0165.html
+
+mtcars: regression analysis: https://rstudio-pubs-static.s3.amazonaws.com/156794_e6ddaf8ca4ac4c2882a91dfa2ca8e3e8.html
+
+ANOVA: https://medium.com/humansystemsdata/anova-with-mtcars-54dd6344c4e1
+
+two way anova: https://www.geeksforgeeks.org/anova-test-in-r-programming/
+
+chisquare : https://rpubs.com/daheza/assignment3
+
+https://datascienceplus.com/chi-squared-test-in-r/
+
+descriptive statistics: http://www.sthda.com/english/wiki/r-built-in-data-sets
+
+http://www.sthda.com/english/wiki/r-built-in-data-sets
+
+
+explore mtcars: https://cran.r-project.org/web/packages/explore/vignettes/explore_mtcars.html
+
+descrpive statistics:  https://rpubs.com/rpubsNovice/459602
+
+mpg: https://www.sandicliffe.co.uk/blog/what-is-mpg#:~:text=MPG%20is%20an%20abbreviation%20for,a%20car%20or%20commercial%20vehicle.&text=If%20one%20model%20has%20fuel,the%20same%20amount%20of%20fuel.
+
+horseower: https://www.quora.com/Why-does-horsepower-matter-Does-it-mean-better-MPG-or-something
+
+ t-test and Chi Squared: https://rpubs.com/daheza/assignment3
+ 
+ code mtcars data : http://psych.colorado.edu/~lharvey/P4165/P4165_2018_1_Spring/Material_2018_Spring_PSYC4165/Class_Handout_pdfs_2018_Spring_PSYC4165/R%20guide_JMS%20Revised_1_11_18.pdf
+ 
+ page 15

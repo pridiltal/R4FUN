@@ -127,7 +127,7 @@
 
 \title{Fundamentals of Mathematics and Statistics with R}
 \author{Dr.~Priyanga D. Talagala}
-\date{2020-07-09}
+\date{2020-12-12}
 
 \begin{document}
 \maketitle
@@ -137,7 +137,9 @@
 \tableofcontents
 }
 \hypertarget{intro}{%
-\chapter{Introduction}\label{intro}}
+\chapter{Introduction to R}\label{intro}}
+
+\pagenumbering{arabic}
 
 \hypertarget{installing-r}{%
 \section{Installing R}\label{installing-r}}
@@ -145,7 +147,7 @@
 \begin{itemize}
 \item
   \textbf{Step 1:} First download R freely from the Comprehensive R Archive Network (CRAN) \url{https://cran.r-project.org/}.
-  (At the moment of writing, R 4.0.2 is the latest version. Choose the most recent one.)
+  (At the moment of writing, R 4.0.3 is the latest version. Choose the most recent one.)
 \item
   \textbf{Step 2:} Then install R Studio's IDE (stands for integrated development environment), a powerful user interface for R from \url{https://rstudio.com/products/rstudio/download/}. Get the Open Source Edition of RStudio Desktop. RStudio allows you to run R in a more user-friendly environment.
 
@@ -231,11 +233,33 @@ The following the code installs the \texttt{tidyverse} package from CRAN
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.0.4     v dplyr   1.0.2
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.0
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
 \begin{itemize}
 \tightlist
 \item
   Some packages produce messages when they are loaded (but some don't)
 \end{itemize}
+
+\hypertarget{getting-started-with-r}{%
+\section{Getting started with R}\label{getting-started-with-r}}
+
+\href{https://cran.r-project.org/doc/manuals/R-intro.pdf}{An Introduction to R: https://cran.r-project.org/doc/manuals/R-intro.pdf}
 
 \hypertarget{differentiation}{%
 \chapter{Differentiation}\label{differentiation}}
@@ -419,13 +443,906 @@ Differentiate with respect to \texttt{y}
 \hypertarget{statistical-distributions}{%
 \chapter{Statistical Distributions}\label{statistical-distributions}}
 
-\hypertarget{applications}{%
-\chapter{Applications}\label{applications}}
+\begin{itemize}
+\item
+  Density, cumulative distribution function, quantile function and random variate generation for many standard probability distributions are available in the stats package.
 
-\hypertarget{final-words}{%
-\chapter{Final Words}\label{final-words}}
+  \begin{itemize}
+  \tightlist
+  \item
+    dxxx : functions for the density/mass function,
+  \item
+    pxxx : cumulative distribution function
+  \item
+    qxxx : quantile function
+  \item
+    rxxx : random variable generation.
+  \end{itemize}
+\end{itemize}
 
-We have finished a nice book.
+\hypertarget{pxxx}{%
+\section{pxxx}\label{pxxx}}
+
+\textbf{Cumulative distribution function (lower tail probability)}
+
+\emph{Example : Standard normal distribution}
+
+\begin{itemize}
+\item
+  \texttt{pnorm(value-of-x-axis)} or \texttt{pnorm(quantile)}
+\item
+  \texttt{pnorm(0)\ =\ 0.5} (the area under the standard normal curve to the left of zero).
+\end{itemize}
+
+\begin{figure}
+
+{\centering \includegraphics{figure/norm1-1} 
+
+}
+
+\caption{Standard normal distribution}\label{fig:norm1}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{pnorm(1.281552)\ =\ 0.9000} (the area under the standard normal curve to the left of 1.281).
+\end{itemize}
+
+\begin{figure}
+
+{\centering \includegraphics{figure/norm2-1} 
+
+}
+
+\caption{Standard normal distribution}\label{fig:norm2}
+\end{figure}
+
+\begin{itemize}
+\item
+  The \texttt{pnorm} function also takes the argument \texttt{lower.tail}. If \texttt{lower.tail} is set equal to \texttt{FALSE} then \texttt{pnorm} returns the upper tail probability (\emph{the integral from \(q\) to \(\infty\) of the pdf}) of the normal distribution.
+\item
+  Note that
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pnorm}\NormalTok{(}\FloatTok{1.281552}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9000001
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pnorm}\NormalTok{(}\FloatTok{1.281552}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9000001
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pnorm}\NormalTok{(}\FloatTok{1.281552}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{FALSE}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.09999992
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\OperatorTok{-}\KeywordTok{pnorm}\NormalTok{(}\FloatTok{1.281552}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.09999992
+\end{verbatim}
+
+\hypertarget{qxxx}{%
+\section{qxxx}\label{qxxx}}
+
+\emph{Example : Standard normal distribution}
+
+\textbf{The \texttt{qnorm} function is simply the inverse of the cdf, which you can also think of as the inverse of \texttt{pnorm}!}
+
+\begin{itemize}
+\item
+  \texttt{qnorm(probability)}
+\item
+  \texttt{qnorm(0.5)\ =\ 0} (0 is the 50th percentile of the standard normal distribution)
+\end{itemize}
+
+\begin{figure}
+
+{\centering \includegraphics{figure/norm1b-1} 
+
+}
+
+\caption{Standard normal distribution}\label{fig:norm1b}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.281552
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.281552
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.9}\NormalTok{,  }\DataTypeTok{lower.tail =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.281552
+\end{verbatim}
+
+\begin{figure}
+
+{\centering \includegraphics{figure/norm3-1} 
+
+}
+
+\caption{Standard normal distribution}\label{fig:norm3}
+\end{figure}
+
+\hypertarget{dxxx}{%
+\section{dxxx}\label{dxxx}}
+
+\emph{Example : Standard normal distribution}
+
+\textbf{The function \texttt{dnorm} returns the value of the probability density function for the normal distribution given parameters for \(x\), \(\mu\), and \(\sigma\).}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{dnorm(0)\ ==\ 1/sqrt(2*pi)}
+\end{itemize}
+
+If \(Z\sim N(0,1)\), then
+
+\[\phi_Z(z) = \frac{1}{\sqrt{2 \pi}}e^{-\frac{1}{2}z^2};\;\; -\infty< z< \infty\]
+
+\[\phi_Z(0) = \frac{1}{\sqrt{2 \pi}} =  0.3989423\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dnorm}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3989423
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{pi)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3989423
+\end{verbatim}
+
+\begin{figure}
+
+{\centering \includegraphics{figure/norm4-1} 
+
+}
+
+\caption{Standard normal distribution}\label{fig:norm4}
+\end{figure}
+
+\[\phi_Z(1) = \frac{1}{\sqrt{2 \pi}}e^{-\frac{1}{2}} =  0.3989423\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dnorm}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2419707
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{pi)) }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2419707
+\end{verbatim}
+
+\begin{figure}
+
+{\centering \includegraphics{figure/norm5-1} 
+
+}
+
+\caption{Standard normal distribution}\label{fig:norm5}
+\end{figure}
+
+\hypertarget{rxxx}{%
+\section{rxxx}\label{rxxx}}
+
+\emph{Example : Standard normal distribution}
+
+\texttt{rnorm(100)} generates 100 random deviates from a standard normal distribution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] -1.0080707  1.3549394 -0.4689749  1.4681936  0.4425564  0.1462031
+##  [7]  0.1715031  0.5925072  2.7647493  0.6192188
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figure/unnamed-chunk-18-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y<-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figure/unnamed-chunk-19-1} \end{center}
+
+\hypertarget{distributions-in-r}{%
+\section{Distributions in R}\label{distributions-in-r}}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Distribution & R name & Additional arguments\tabularnewline
+\midrule
+\endhead
+beta & \texttt{beta} & \texttt{shape1,\ shape\ 2,\ ncp}\tabularnewline
+binomial & \texttt{binom} & \texttt{size,\ prob}\tabularnewline
+Cauchy & \texttt{cauchy} & \texttt{location,\ scale}\tabularnewline
+chi-squared & \texttt{chisq} & \texttt{df,\ ncp}\tabularnewline
+exponential & \texttt{exp} & \texttt{rate}\tabularnewline
+F & \texttt{f} & \texttt{df1,\ df2,\ ncp}\tabularnewline
+gamma & \texttt{gamma} & \texttt{shape,\ scale}\tabularnewline
+geometric & \texttt{geom} & \texttt{prob}\tabularnewline
+hypergeometric & \texttt{hyper} & \texttt{m,\ n,\ k}\tabularnewline
+log-normal & \texttt{lnorm} & \texttt{meanlog,\ sdlog}\tabularnewline
+logistic & \texttt{logis} & \texttt{location,\ scale}\tabularnewline
+negative binomial & \texttt{nbinom} & \texttt{size,\ prob}\tabularnewline
+normal & \texttt{norm} & \texttt{mean,\ sd}\tabularnewline
+Poisson & \texttt{pois} & \texttt{lambda}\tabularnewline
+signed rank & \texttt{signrank} & \texttt{n}\tabularnewline
+Student's t & \texttt{t} & \texttt{df,\ ncp}\tabularnewline
+uniform & \texttt{unif} & \texttt{min,\ max}\tabularnewline
+Weibull & \texttt{weibull} & \texttt{shape,\ scale}\tabularnewline
+Wilcoxon & \texttt{wilcox} & \texttt{m,\ n}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{exercise}{%
+\section{Exercise}\label{exercise}}
+
+\hypertarget{normal}{%
+\subsection{Normal}\label{normal}}
+
+\begin{figure}
+
+{\centering \includegraphics{figure/norm6-1} 
+
+}
+
+\caption{Standard normal distribution}\label{fig:norm6}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ?dnorm - Help page}
+
+\KeywordTok{dnorm}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{log =} \OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{pnorm}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{log.p =} \OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{log.p =} \OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{10}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ?dnorm - Help page}
+
+\KeywordTok{dnorm}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{log =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3989423
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pnorm}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{log.p =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{log.p =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{10}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 0.9919293 3.3549394 1.5310251 3.4681936 2.4425564 2.1462031 2.1715031
+##  [8] 2.5925072 4.7647493 2.6192188
+\end{verbatim}
+
+\hypertarget{gamma}{%
+\subsection{Gamma}\label{gamma}}
+
+\begin{figure}
+
+{\centering \includegraphics{figure/gamma-1} 
+
+}
+
+\caption{Standard normal distribution}\label{fig:gamma}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dgamma}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DataTypeTok{shape =}\DecValTok{2}\NormalTok{, }\DataTypeTok{scale =} \DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{, }\DataTypeTok{log =} \OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{pgamma}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DataTypeTok{shape =}\DecValTok{2}\NormalTok{, }\DataTypeTok{scale =} \DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{,}
+       \DataTypeTok{log.p =} \OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{qgamma}\NormalTok{(}\FloatTok{0.8}\NormalTok{, }\DataTypeTok{shape =} \DecValTok{2}\NormalTok{,  }\DataTypeTok{scale =} \DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{,}
+       \DataTypeTok{log.p =} \OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{rgamma}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DataTypeTok{shape =}\DecValTok{2}\NormalTok{ , }\DataTypeTok{scale =} \DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dgamma}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DataTypeTok{shape =}\DecValTok{2}\NormalTok{, }\DataTypeTok{scale =} \DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{, }\DataTypeTok{log =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4480836
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pgamma}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DataTypeTok{shape =}\DecValTok{2}\NormalTok{, }\DataTypeTok{scale =} \DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{,}
+       \DataTypeTok{log.p =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8008517
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qgamma}\NormalTok{(}\FloatTok{0.8}\NormalTok{, }\DataTypeTok{shape =} \DecValTok{2}\NormalTok{,  }\DataTypeTok{scale =} \DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{,}
+       \DataTypeTok{log.p =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9981028
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rgamma}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DataTypeTok{shape =}\DecValTok{2}\NormalTok{ , }\DataTypeTok{scale =} \DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 0.3117027 0.5663228 1.8567817 0.1403567 0.7776307 0.8252981 1.4063366
+##  [8] 0.7292312 0.9434481 0.9001169
+\end{verbatim}
+
+\newpage
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+Discrete
+\url{http://www.r-tutor.com/elementary-statistics/probability-distributions}
+
+\url{https://rstudio-pubs-static.s3.amazonaws.com/100906_8e3a32dd11c14b839468db756cee7400.html}
+
+\hypertarget{linear-regression-in-r}{%
+\chapter*{Linear Regression in R}\label{linear-regression-in-r}}
+\addcontentsline{toc}{chapter}{Linear Regression in R}
+
+\pagenumbering{arabic}
+
+In many practical situations we want to identify various types of relationships between variables. \textbf{Regression analysis} is a statistical technique for investigating and \textbf{modeling the relationship between variables}.
+
+\textbf{Linear regression} attempts to model the relationship between a scalar response (or dependent variable) and one or more explanatory variables (or independent variables) by fitting a \textbf{linear equation} to observed data. The case of one explanatory variable is called \textbf{simple linear regression.}
+
+\hypertarget{loading-required-r-packages}{%
+\section{Loading required R packages}\label{loading-required-r-packages}}
+
+The following R packages are required for this chapter:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{ggplot2} for data visualization
+\item
+  \texttt{datarium} data bank for statistical analysis and visualization
+\item
+  The \texttt{ggpairs()} function of the \texttt{GGally} package allows to build a great scatterplot matrix.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{library}\NormalTok{(datarium)}
+\CommentTok{## To learn more about the dataset}
+\CommentTok{# ?marketing}
+
+\KeywordTok{library}\NormalTok{(GGally)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  We are going to use the marketing data set available in \texttt{datarium} package, which contains the impact of the amount of money spent on three advertising medias (youtube, Facebook and newspaper) on sales.
+\end{itemize}
+
+\hypertarget{load-data-set}{%
+\section{Load Data set}\label{load-data-set}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(marketing)}
+\KeywordTok{head}\NormalTok{(marketing)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   youtube facebook newspaper sales
+## 1  276.12    45.36     83.04 26.52
+## 2   53.40    47.16     54.12 12.48
+## 3   20.64    55.08     83.16 11.16
+## 4  181.80    49.56     70.20 22.20
+## 5  216.96    12.96     70.08 15.48
+## 6   10.44    58.68     90.00  8.64
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(marketing)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     youtube          facebook       newspaper          sales      
+##  Min.   :  0.84   Min.   : 0.00   Min.   :  0.36   Min.   : 1.92  
+##  1st Qu.: 89.25   1st Qu.:11.97   1st Qu.: 15.30   1st Qu.:12.45  
+##  Median :179.70   Median :27.48   Median : 30.90   Median :15.48  
+##  Mean   :176.45   Mean   :27.92   Mean   : 36.66   Mean   :16.83  
+##  3rd Qu.:262.59   3rd Qu.:43.83   3rd Qu.: 54.12   3rd Qu.:20.88  
+##  Max.   :355.68   Max.   :59.52   Max.   :136.80   Max.   :32.40
+\end{verbatim}
+
+\hypertarget{explore-data}{%
+\section{Explore data}\label{explore-data}}
+
+\hypertarget{scatterplot}{%
+\subsection{Scatterplot}\label{scatterplot}}
+
+\begin{itemize}
+\tightlist
+\item
+  Usually, the first step in regression analysis is to construct a scatter plot (or scatter matrix).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ marketing, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ facebook, }\DataTypeTok{y =}\NormalTok{ sales)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{aspect.ratio =} \DecValTok{1}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Sales"}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"facebook"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figure/unnamed-chunk-26-1} \end{center}
+
+\hypertarget{scatterplot-matrix}{%
+\subsection{Scatterplot matrix}\label{scatterplot-matrix}}
+
+\begin{itemize}
+\tightlist
+\item
+  The \texttt{ggpairs()} function of the \texttt{GGally} package allows to build a great scatterplot matrix.
+\item
+  Scatterplots of each pair of numeric variable are drawn on the left part of the figure.
+\item
+  Pearson correlation is displayed on the right.
+\item
+  Variable distribution is available on the diagonal.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Check correlations (as scatterplots), distribution and print corrleation coefficient }
+
+\KeywordTok{ggpairs}\NormalTok{(marketing, }\DataTypeTok{title=}\StringTok{"correlogram with ggpairs()"}\NormalTok{) }\OperatorTok{+}
+\StringTok{   }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{aspect.ratio =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figure/unnamed-chunk-27-1} \end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  The term \(corr\) is the Pearson product-moment correlation coefficient (\(r\)).
+\item
+  It is a measure of the \textbf{linear} correlation of two variables.
+\item
+  It is a number that ranges from -1 to 0 to +1, representing th strength of the linear relationship between the variables.
+\item
+  An \(r\) value of \(+1\) denotes a perfect \textbf{linear} positive relationship between two variables.
+\item
+  An \(r\) value of \(-1\) denotes a perfect \textbf{linear} negative relationship between two variables, which indicates an inverse relationship between two variables: as one variable gets larger, the other gets smaller.
+\item
+  An \(r\) value of 0 means no \textbf{linear} relationship is present between the two variables (There can be a non-linear relationship.)
+\end{itemize}
+
+\hypertarget{simple-linear-regression}{%
+\section{Simple Linear Regression}\label{simple-linear-regression}}
+
+\begin{itemize}
+\item
+  The most elementary regression model is called \textbf{simple linear regression}.
+\item
+  The variable to be predicted is called the \emph{dependent variable} an is denoted by \(y\).
+\item
+  The \emph{predictor} is called the \emph{independent variable} or \emph{explanatory variable} and is denoted by \(x\)
+\item
+  In simple \emph{linear} regression analysis, only a strait-line relationship between two variables is examined.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#lm(y ~ x)}
+\NormalTok{reg <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(sales }\OperatorTok{~}\StringTok{ }\NormalTok{facebook,  }\DataTypeTok{data =}\NormalTok{ marketing)}
+
+\NormalTok{reg}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = sales ~ facebook, data = marketing)
+## 
+## Coefficients:
+## (Intercept)     facebook  
+##     11.1740       0.2025
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(reg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = sales ~ facebook, data = marketing)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -18.8766  -2.5589   0.9248   3.3330   9.8173 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 11.17397    0.67548  16.542   <2e-16 ***
+## facebook     0.20250    0.02041   9.921   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.13 on 198 degrees of freedom
+## Multiple R-squared:  0.332,  Adjusted R-squared:  0.3287 
+## F-statistic: 98.42 on 1 and 198 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\hypertarget{residual-analysis}{%
+\subsection{Residual Analysis}\label{residual-analysis}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(reg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figure/unnamed-chunk-29-1} \end{center}
+
+\begin{itemize}
+\item
+  You want these plots to display random residuals (no patterns) that are uncorrelated and uniform.
+\item
+  Generally speaking, if you see patterns in the residuals, your model has a problem, and you might not be able to trust the results.
+\item
+  Heteroscedasticity produces a distinctive fan or cone shape in residual plots.
+\item
+  To check for heteroscedasticity, you need to assess the residuals by fitted value plots specifically.
+\item
+  Typically, the telltale pattern for heteroscedasticity is that as the fitted values increases, the variance of the residuals also increases.
+\end{itemize}
+
+Read more about residual analysis:
+
+\begin{itemize}
+\tightlist
+\item
+  Montgomery, D. C., Peck, E. A., \& Vining, G. G. (2012). Introduction to linear regression analysis (Vol. 821). John Wiley \& Sons.
+\end{itemize}
+
+\hypertarget{multiple-linear-regression}{%
+\section{Multiple Linear Regression}\label{multiple-linear-regression}}
+
+\begin{itemize}
+\item
+  Regression models with more than one independent variable can be explored by using multiple regression models.
+\item
+  We want to build a model for estimating sales based on the advertising budget invested in youtube, facebook and newspaper, as follow:
+\end{itemize}
+
+\[sales = \beta_0 + \beta_1*youtube + \beta_2*facebook + \beta_3*newspaper\]
+
+You can compute the model coefficients in R as follow:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m_reg <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(sales }\OperatorTok{~}\StringTok{ }\NormalTok{youtube }\OperatorTok{+}\StringTok{ }\NormalTok{facebook }\OperatorTok{+}\StringTok{ }\NormalTok{newspaper, }\DataTypeTok{data =}\NormalTok{ marketing)}
+\KeywordTok{summary}\NormalTok{(m_reg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = sales ~ youtube + facebook + newspaper, data = marketing)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -10.5932  -1.0690   0.2902   1.4272   3.3951 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  3.526667   0.374290   9.422   <2e-16 ***
+## youtube      0.045765   0.001395  32.809   <2e-16 ***
+## facebook     0.188530   0.008611  21.893   <2e-16 ***
+## newspaper   -0.001037   0.005871  -0.177     0.86    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.023 on 196 degrees of freedom
+## Multiple R-squared:  0.8972, Adjusted R-squared:  0.8956 
+## F-statistic: 570.3 on 3 and 196 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\hypertarget{how-to-test-if-your-linear-model-has-a-good-fit}{%
+\subsection{How to test if your linear model has a good fit?}\label{how-to-test-if-your-linear-model-has-a-good-fit}}
+
+\begin{itemize}
+\item
+  Most common value to check how good is your model is the coefficient of determinations or \(R^2\)
+\item
+  As we have seen in simple linear regression, the overall quality of the model can be assessed by examining the R-squared (\(R^2\)).
+\item
+  \(R^2=0.05602\) means that the model explains only 5\% of the data variability.
+\item
+  \(R^2\) represents the proportion of variance, in the outcome variable \(y\), that may be predicted by knowing the value of the \(x\) variables.
+\item
+  An \(R^2\) value close to 1 indicates that the model explains a large portion of the variance in the outcome variable.
+\item
+  The second one has an \(R^2\) of 0.89, and the model can explain \(89\%\) of the total variability.
+\item
+  In the regression summary output notice that there's two different \(R^2\), one multiple and one adjusted.
+\item
+  One problem with this \(R^2\) is that it will always increase when more variables are added to the model, even if those variables are only weakly associated with the response (i.e.~these variables don't add anything to your predictions)
+\item
+  For this reason, the \textbf{adjusted} \(R^2\) is probably better to look at if you are adding more than one variable to the model, since it only increases if it reduces the overall error of the predictions.
+\item
+  The adjustment in the \textbf{Adjusted R Square} value in the summary output is a correction for the number of x variables included in the prediction model.
+\end{itemize}
+
+\textbf{NOTE}
+
+\emph{In our example, with youtube, newspaper and facebook predictor variables, the adjusted} \(R^2 = 0.89\), \emph{meaning that "89\% of the variance in the measure of sales can be predicted by youtube, newspaper and facebook advertising budgets.}
+
+\emph{This model is better than the simple linear model with only facebook, which had an adjusted} \(R^2\) \emph{of 0.05.}
+
+\hypertarget{dont-forget-to-look-at-the-residuals}{%
+\subsection{Don't forget to look at the residuals}\label{dont-forget-to-look-at-the-residuals}}
+
+\begin{itemize}
+\item
+  You can have a pretty good \(R^2\) in your model, but let's not rush to conclusions here.
+\item
+  Ideally, when you plot the residuals, they should look random. Otherwise, it means that maybe there is a hidden pattern that the linear model is not considering.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(m_reg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figure/unnamed-chunk-31-1} \end{center}
+
+\hypertarget{prediction-for-new-data-set}{%
+\section{Prediction for new data set}\label{prediction-for-new-data-set}}
+
+\begin{itemize}
+\tightlist
+\item
+  Using the above model, we can predict the sales for a new advertising budget.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{new.budget <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{youtube =} \KeywordTok{c}\NormalTok{(}\DecValTok{150}\NormalTok{, }\DecValTok{200}\NormalTok{, }\DecValTok{100}\NormalTok{),}
+  \DataTypeTok{facebook =} \KeywordTok{c}\NormalTok{( }\DecValTok{150}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{200}\NormalTok{),}
+  \DataTypeTok{newspaper =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\NormalTok{)}
+\NormalTok{new.budget}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   youtube facebook newspaper
+## 1     150      150         0
+## 2     200      100         0
+## 3     100      200         0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{predict}\NormalTok{(m_reg, new.budget)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        1        2        3 
+## 38.67087 31.53260 45.80914
+\end{verbatim}
+
+\textbf{Simple Linear regression}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{new.facebook <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{facebook =} \KeywordTok{c}\NormalTok{(}\DecValTok{50}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{200}\NormalTok{)}
+\NormalTok{)}
+
+\KeywordTok{predict}\NormalTok{(reg, new.facebook)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        1        2        3 
+## 21.29875 31.42354 51.67312
+\end{verbatim}
+
+\newpage
+
+\hypertarget{references-1}{%
+\section{References}\label{references-1}}
+
+\url{https://www.scribbr.com/statistics/linear-regression-in-r/}
+
+\url{https://statisticsbyjim.com/regression/heteroscedasticity-regression/}
+
+\newpage
+
+hypothesis testing part
+
+\url{http://www.sthda.com/english/articles/40-regression-analysis/168-multiple-linear-regression-in-r/}
+
+\hypertarget{mtcars}{%
+\chapter{mtcars}\label{mtcars}}
+
+Cars Dataset: \url{https://www.rpubs.com/dksmith01/cars}
+
+mtcars descriptive analysis: \url{https://rstudio-pubs-static.s3.amazonaws.com/481654_883a4b47c9b244d4859dd1db235f0165.html}
+
+mtcars: regression analysis: \url{https://rstudio-pubs-static.s3.amazonaws.com/156794_e6ddaf8ca4ac4c2882a91dfa2ca8e3e8.html}
+
+ANOVA: \url{https://medium.com/humansystemsdata/anova-with-mtcars-54dd6344c4e1}
+
+two way anova: \url{https://www.geeksforgeeks.org/anova-test-in-r-programming/}
+
+chisquare : \url{https://rpubs.com/daheza/assignment3}
+
+\url{https://datascienceplus.com/chi-squared-test-in-r/}
+
+descriptive statistics: \url{http://www.sthda.com/english/wiki/r-built-in-data-sets}
+
+\url{http://www.sthda.com/english/wiki/r-built-in-data-sets}
+
+explore mtcars: \url{https://cran.r-project.org/web/packages/explore/vignettes/explore_mtcars.html}
+
+descrpive statistics: \url{https://rpubs.com/rpubsNovice/459602}
+
+mpg: \url{https://www.sandicliffe.co.uk/blog/what-is-mpg\#}:\textasciitilde{}:text=MPG\%20is\%20an\%20abbreviation\%20for,a\%20car\%20or\%20commercial\%20vehicle.\&text=If\%20one\%20model\%20has\%20fuel,the\%20same\%20amount\%20of\%20fuel.
+
+horseower: \url{https://www.quora.com/Why-does-horsepower-matter-Does-it-mean-better-MPG-or-something}
+
+t-test and Chi Squared: \url{https://rpubs.com/daheza/assignment3}
+
+code mtcars data : \url{http://psych.colorado.edu/~lharvey/P4165/P4165_2018_1_Spring/Material_2018_Spring_PSYC4165/Class_Handout_pdfs_2018_Spring_PSYC4165/R\%20guide_JMS\%20Revised_1_11_18.pdf}
+
+page 15
 
 \bibliography{book.bib,packages.bib}
 

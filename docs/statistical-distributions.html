@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Statistical Distributions | Fundamentals of Mathematics and Statistics with R</title>
   <meta name="description" content="Chapter 3 Statistical Distributions | Fundamentals of Mathematics and Statistics with R" />
-  <meta name="generator" content="bookdown 0.18.3 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.2 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Statistical Distributions | Fundamentals of Mathematics and Statistics with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Dr. Priyanga D. Talagala" />
 
 
-<meta name="date" content="2020-07-09" />
+<meta name="date" content="2020-12-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="differentiation.html"/>
-<link rel="next" href="applications.html"/>
+<link rel="next" href="linear-regression-in-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -131,20 +133,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Fundamentals of Mathematics and Statistics with R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#installing-r"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#rstudio-layout"><i class="fa fa-check"></i><b>1.2</b> RStudio layout</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#installing-an-r-package"><i class="fa fa-check"></i><b>1.3</b> Installing an R Package</a></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#loading-an-r-packages"><i class="fa fa-check"></i><b>1.4</b> Loading an R Packages</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#getting-started-with-r"><i class="fa fa-check"></i><b>1.5</b> Getting started with R</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="differentiation.html"><a href="differentiation.html"><i class="fa fa-check"></i><b>2</b> Differentiation</a><ul>
 <li class="chapter" data-level="2.1" data-path="differentiation.html"><a href="differentiation.html#higher-derivatives"><i class="fa fa-check"></i><b>2.1</b> Higher Derivatives</a></li>
 <li class="chapter" data-level="2.2" data-path="differentiation.html"><a href="differentiation.html#partial-derivatives"><i class="fa fa-check"></i><b>2.2</b> Partial Derivatives</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="statistical-distributions.html"><a href="statistical-distributions.html"><i class="fa fa-check"></i><b>3</b> Statistical Distributions</a></li>
-<li class="chapter" data-level="4" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>4</b> Applications</a></li>
-<li class="chapter" data-level="5" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>5</b> Final Words</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="3" data-path="statistical-distributions.html"><a href="statistical-distributions.html"><i class="fa fa-check"></i><b>3</b> Statistical Distributions</a><ul>
+<li class="chapter" data-level="3.1" data-path="statistical-distributions.html"><a href="statistical-distributions.html#pxxx"><i class="fa fa-check"></i><b>3.1</b> pxxx</a></li>
+<li class="chapter" data-level="3.2" data-path="statistical-distributions.html"><a href="statistical-distributions.html#qxxx"><i class="fa fa-check"></i><b>3.2</b> qxxx</a></li>
+<li class="chapter" data-level="3.3" data-path="statistical-distributions.html"><a href="statistical-distributions.html#dxxx"><i class="fa fa-check"></i><b>3.3</b> dxxx</a></li>
+<li class="chapter" data-level="3.4" data-path="statistical-distributions.html"><a href="statistical-distributions.html#rxxx"><i class="fa fa-check"></i><b>3.4</b> rxxx</a></li>
+<li class="chapter" data-level="3.5" data-path="statistical-distributions.html"><a href="statistical-distributions.html#distributions-in-r"><i class="fa fa-check"></i><b>3.5</b> Distributions in R</a></li>
+<li class="chapter" data-level="3.6" data-path="statistical-distributions.html"><a href="statistical-distributions.html#exercise"><i class="fa fa-check"></i><b>3.6</b> Exercise</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="statistical-distributions.html"><a href="statistical-distributions.html#normal"><i class="fa fa-check"></i><b>3.6.1</b> Normal</a></li>
+<li class="chapter" data-level="3.6.2" data-path="statistical-distributions.html"><a href="statistical-distributions.html#gamma"><i class="fa fa-check"></i><b>3.6.2</b> Gamma</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="statistical-distributions.html"><a href="statistical-distributions.html#references"><i class="fa fa-check"></i><b>3.7</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html"><i class="fa fa-check"></i>Linear Regression in R</a><ul>
+<li class="chapter" data-level="3.8" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#loading-required-r-packages"><i class="fa fa-check"></i><b>3.8</b> Loading required R packages</a></li>
+<li class="chapter" data-level="3.9" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#load-data-set"><i class="fa fa-check"></i><b>3.9</b> Load Data set</a></li>
+<li class="chapter" data-level="3.10" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#explore-data"><i class="fa fa-check"></i><b>3.10</b> Explore data</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#scatterplot"><i class="fa fa-check"></i><b>3.10.1</b> Scatterplot</a></li>
+<li class="chapter" data-level="3.10.2" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#scatterplot-matrix"><i class="fa fa-check"></i><b>3.10.2</b> Scatterplot matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#simple-linear-regression"><i class="fa fa-check"></i><b>3.11</b> Simple Linear Regression</a><ul>
+<li class="chapter" data-level="3.11.1" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#residual-analysis"><i class="fa fa-check"></i><b>3.11.1</b> Residual Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.12" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#multiple-linear-regression"><i class="fa fa-check"></i><b>3.12</b> Multiple Linear Regression</a><ul>
+<li class="chapter" data-level="3.12.1" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#how-to-test-if-your-linear-model-has-a-good-fit"><i class="fa fa-check"></i><b>3.12.1</b> How to test if your linear model has a good fit?</a></li>
+<li class="chapter" data-level="3.12.2" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#dont-forget-to-look-at-the-residuals"><i class="fa fa-check"></i><b>3.12.2</b> Don’t forget to look at the residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#prediction-for-new-data-set"><i class="fa fa-check"></i><b>3.13</b> Prediction for new data set</a></li>
+<li class="chapter" data-level="3.14" data-path="linear-regression-in-r.html"><a href="linear-regression-in-r.html#references-1"><i class="fa fa-check"></i><b>3.14</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="mtcars.html"><a href="mtcars.html"><i class="fa fa-check"></i><b>4</b> mtcars</a></li>
+<li class="chapter" data-level="" data-path="references-2.html"><a href="references-2.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
       </nav>
@@ -164,7 +194,298 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="statistical-distributions" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Statistical Distributions</h1>
+<ul>
+<li><p>Density, cumulative distribution function, quantile function and random variate generation for many standard probability distributions are available in the stats package.</p>
+<ul>
+<li>dxxx : functions for the density/mass function,</li>
+<li>pxxx : cumulative distribution function</li>
+<li>qxxx : quantile function</li>
+<li>rxxx : random variable generation.</li>
+</ul></li>
+</ul>
+<div id="pxxx" class="section level2">
+<h2><span class="header-section-number">3.1</span> pxxx</h2>
+<p><strong>Cumulative distribution function (lower tail probability)</strong></p>
+<p><em>Example : Standard normal distribution</em></p>
+<ul>
+<li><p><code>pnorm(value-of-x-axis)</code> or <code>pnorm(quantile)</code></p></li>
+<li><p><code>pnorm(0) = 0.5</code> (the area under the standard normal curve to the left of zero).</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:norm1"></span>
+<img src="figure/norm1-1.png" alt="Standard normal distribution" width="960" />
+<p class="caption">
+Figure 3.1: Standard normal distribution
+</p>
+</div>
+<ul>
+<li><code>pnorm(1.281552) = 0.9000</code> (the area under the standard normal curve to the left of 1.281).</li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:norm2"></span>
+<img src="figure/norm2-1.png" alt="Standard normal distribution" width="960" />
+<p class="caption">
+Figure 3.2: Standard normal distribution
+</p>
+</div>
+<ul>
+<li><p>The <code>pnorm</code> function also takes the argument <code>lower.tail</code>. If <code>lower.tail</code> is set equal to <code>FALSE</code> then <code>pnorm</code> returns the upper tail probability (<em>the integral from <span class="math inline">\(q\)</span> to <span class="math inline">\(\infty\)</span> of the pdf</em>) of the normal distribution.</p></li>
+<li><p>Note that</p></li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">pnorm</span>(<span class="fl">1.281552</span>)</a></code></pre></div>
+<pre><code>## [1] 0.9000001</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">pnorm</span>(<span class="fl">1.281552</span>, <span class="dt">lower.tail =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] 0.9000001</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">pnorm</span>(<span class="fl">1.281552</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>) </a></code></pre></div>
+<pre><code>## [1] 0.09999992</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="dv">1</span><span class="op">-</span><span class="kw">pnorm</span>(<span class="fl">1.281552</span>, <span class="dt">lower.tail =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] 0.09999992</code></pre>
+</div>
+<div id="qxxx" class="section level2">
+<h2><span class="header-section-number">3.2</span> qxxx</h2>
+<p><em>Example : Standard normal distribution</em></p>
+<p><strong>The <code>qnorm</code> function is simply the inverse of the cdf, which you can also think of as the inverse of <code>pnorm</code>!</strong></p>
+<ul>
+<li><p><code>qnorm(probability)</code></p></li>
+<li><p><code>qnorm(0.5) = 0</code> (0 is the 50th percentile of the standard normal distribution)</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:norm1b"></span>
+<img src="figure/norm1b-1.png" alt="Standard normal distribution" width="960" />
+<p class="caption">
+Figure 3.3: Standard normal distribution
+</p>
+</div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">qnorm</span>(<span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">qnorm</span>(<span class="fl">0.9</span>)</a></code></pre></div>
+<pre><code>## [1] 1.281552</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">qnorm</span>(<span class="fl">0.1</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## [1] 1.281552</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">qnorm</span>(<span class="fl">0.9</span>,  <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## [1] -1.281552</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:norm3"></span>
+<img src="figure/norm3-1.png" alt="Standard normal distribution" width="960" />
+<p class="caption">
+Figure 3.4: Standard normal distribution
+</p>
+</div>
+</div>
+<div id="dxxx" class="section level2">
+<h2><span class="header-section-number">3.3</span> dxxx</h2>
+<p><em>Example : Standard normal distribution</em></p>
+<p><strong>The function <code>dnorm</code> returns the value of the probability density function for the normal distribution given parameters for <span class="math inline">\(x\)</span>, <span class="math inline">\(\mu\)</span>, and <span class="math inline">\(\sigma\)</span>.</strong></p>
+<ul>
+<li><code>dnorm(0) == 1/sqrt(2*pi)</code></li>
+</ul>
+<p>If <span class="math inline">\(Z\sim N(0,1)\)</span>, then</p>
+<p><span class="math display">\[\phi_Z(z) = \frac{1}{\sqrt{2 \pi}}e^{-\frac{1}{2}z^2};\;\; -\infty&lt; z&lt; \infty\]</span></p>
+<p><span class="math display">\[\phi_Z(0) = \frac{1}{\sqrt{2 \pi}} =  0.3989423\]</span></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw">dnorm</span>(<span class="dv">0</span>)</a></code></pre></div>
+<pre><code>## [1] 0.3989423</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="dv">1</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">2</span><span class="op">*</span>pi)</a></code></pre></div>
+<pre><code>## [1] 0.3989423</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:norm4"></span>
+<img src="figure/norm4-1.png" alt="Standard normal distribution" width="960" />
+<p class="caption">
+Figure 3.5: Standard normal distribution
+</p>
+</div>
+<p><span class="math display">\[\phi_Z(1) = \frac{1}{\sqrt{2 \pi}}e^{-\frac{1}{2}} =  0.3989423\]</span></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">dnorm</span>(<span class="dv">1</span>)</a></code></pre></div>
+<pre><code>## [1] 0.2419707</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1">(<span class="dv">1</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">2</span><span class="op">*</span>pi)) <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 0.2419707</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:norm5"></span>
+<img src="figure/norm5-1.png" alt="Standard normal distribution" width="960" />
+<p class="caption">
+Figure 3.6: Standard normal distribution
+</p>
+</div>
+</div>
+<div id="rxxx" class="section level2">
+<h2><span class="header-section-number">3.4</span> rxxx</h2>
+<p><em>Example : Standard normal distribution</em></p>
+<p><code>rnorm(100)</code> generates 100 random deviates from a standard normal distribution.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb49-2" title="2">x</a></code></pre></div>
+<pre><code>##  [1] -1.0080707  1.3549394 -0.4689749  1.4681936  0.4425564  0.1462031
+##  [7]  0.1715031  0.5925072  2.7647493  0.6192188</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="kw">hist</span>(x)</a></code></pre></div>
+<p><img src="figure/unnamed-chunk-18-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">y&lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1000</span>)</a>
+<a class="sourceLine" id="cb52-2" title="2"><span class="kw">hist</span>(y)</a></code></pre></div>
+<p><img src="figure/unnamed-chunk-19-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="distributions-in-r" class="section level2">
+<h2><span class="header-section-number">3.5</span> Distributions in R</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Distribution</th>
+<th>R name</th>
+<th>Additional arguments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>beta</td>
+<td><code>beta</code></td>
+<td><code>shape1, shape 2, ncp</code></td>
+</tr>
+<tr class="even">
+<td>binomial</td>
+<td><code>binom</code></td>
+<td><code>size, prob</code></td>
+</tr>
+<tr class="odd">
+<td>Cauchy</td>
+<td><code>cauchy</code></td>
+<td><code>location, scale</code></td>
+</tr>
+<tr class="even">
+<td>chi-squared</td>
+<td><code>chisq</code></td>
+<td><code>df, ncp</code></td>
+</tr>
+<tr class="odd">
+<td>exponential</td>
+<td><code>exp</code></td>
+<td><code>rate</code></td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td><code>f</code></td>
+<td><code>df1, df2, ncp</code></td>
+</tr>
+<tr class="odd">
+<td>gamma</td>
+<td><code>gamma</code></td>
+<td><code>shape, scale</code></td>
+</tr>
+<tr class="even">
+<td>geometric</td>
+<td><code>geom</code></td>
+<td><code>prob</code></td>
+</tr>
+<tr class="odd">
+<td>hypergeometric</td>
+<td><code>hyper</code></td>
+<td><code>m, n, k</code></td>
+</tr>
+<tr class="even">
+<td>log-normal</td>
+<td><code>lnorm</code></td>
+<td><code>meanlog, sdlog</code></td>
+</tr>
+<tr class="odd">
+<td>logistic</td>
+<td><code>logis</code></td>
+<td><code>location, scale</code></td>
+</tr>
+<tr class="even">
+<td>negative binomial</td>
+<td><code>nbinom</code></td>
+<td><code>size, prob</code></td>
+</tr>
+<tr class="odd">
+<td>normal</td>
+<td><code>norm</code></td>
+<td><code>mean, sd</code></td>
+</tr>
+<tr class="even">
+<td>Poisson</td>
+<td><code>pois</code></td>
+<td><code>lambda</code></td>
+</tr>
+<tr class="odd">
+<td>signed rank</td>
+<td><code>signrank</code></td>
+<td><code>n</code></td>
+</tr>
+<tr class="even">
+<td>Student’s t</td>
+<td><code>t</code></td>
+<td><code>df, ncp</code></td>
+</tr>
+<tr class="odd">
+<td>uniform</td>
+<td><code>unif</code></td>
+<td><code>min, max</code></td>
+</tr>
+<tr class="even">
+<td>Weibull</td>
+<td><code>weibull</code></td>
+<td><code>shape, scale</code></td>
+</tr>
+<tr class="odd">
+<td>Wilcoxon</td>
+<td><code>wilcox</code></td>
+<td><code>m, n</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="exercise" class="section level2">
+<h2><span class="header-section-number">3.6</span> Exercise</h2>
+<div id="normal" class="section level3">
+<h3><span class="header-section-number">3.6.1</span> Normal</h3>
+<div class="figure" style="text-align: center"><span id="fig:norm6"></span>
+<img src="figure/norm6-1.png" alt="Standard normal distribution" width="960" />
+<p class="caption">
+Figure 3.7: Standard normal distribution
+</p>
+</div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="co"># ?dnorm - Help page</span></a>
+<a class="sourceLine" id="cb53-2" title="2"></a>
+<a class="sourceLine" id="cb53-3" title="3"><span class="kw">dnorm</span>(<span class="dv">2</span>, <span class="dt">mean =</span> <span class="dv">2</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">log =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb53-4" title="4"><span class="kw">pnorm</span>(<span class="dv">2</span>, <span class="dt">mean =</span> <span class="dv">2</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">lower.tail =</span> <span class="ot">TRUE</span>, <span class="dt">log.p =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb53-5" title="5"><span class="kw">qnorm</span>(<span class="fl">0.5</span>, <span class="dt">mean =</span> <span class="dv">2</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">lower.tail =</span> <span class="ot">TRUE</span>, <span class="dt">log.p =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb53-6" title="6"><span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">2</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="co"># ?dnorm - Help page</span></a>
+<a class="sourceLine" id="cb54-2" title="2"></a>
+<a class="sourceLine" id="cb54-3" title="3"><span class="kw">dnorm</span>(<span class="dv">2</span>, <span class="dt">mean =</span> <span class="dv">2</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">log =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## [1] 0.3989423</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="kw">pnorm</span>(<span class="dv">2</span>, <span class="dt">mean =</span> <span class="dv">2</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">lower.tail =</span> <span class="ot">TRUE</span>, <span class="dt">log.p =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## [1] 0.5</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="kw">qnorm</span>(<span class="fl">0.5</span>, <span class="dt">mean =</span> <span class="dv">2</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">lower.tail =</span> <span class="ot">TRUE</span>, <span class="dt">log.p =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="kw">rnorm</span>(<span class="dt">n=</span><span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">2</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a></code></pre></div>
+<pre><code>##  [1] 0.9919293 3.3549394 1.5310251 3.4681936 2.4425564 2.1462031 2.1715031
+##  [8] 2.5925072 4.7647493 2.6192188</code></pre>
+</div>
+<div id="gamma" class="section level3">
+<h3><span class="header-section-number">3.6.2</span> Gamma</h3>
+<div class="figure" style="text-align: center"><span id="fig:gamma"></span>
+<img src="figure/gamma-1.png" alt="Standard normal distribution" width="960" />
+<p class="caption">
+Figure 3.8: Standard normal distribution
+</p>
+</div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="kw">dgamma</span>(<span class="dv">1</span>, <span class="dt">shape =</span><span class="dv">2</span>, <span class="dt">scale =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dt">log =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb62-2" title="2"><span class="kw">pgamma</span>(<span class="dv">1</span>, <span class="dt">shape =</span><span class="dv">2</span>, <span class="dt">scale =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dt">lower.tail =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb62-3" title="3">       <span class="dt">log.p =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb62-4" title="4"><span class="kw">qgamma</span>(<span class="fl">0.8</span>, <span class="dt">shape =</span> <span class="dv">2</span>,  <span class="dt">scale =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dt">lower.tail =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb62-5" title="5">       <span class="dt">log.p =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb62-6" title="6"><span class="kw">rgamma</span>(<span class="dv">10</span>, <span class="dt">shape =</span><span class="dv">2</span> , <span class="dt">scale =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="kw">dgamma</span>(<span class="dv">1</span>, <span class="dt">shape =</span><span class="dv">2</span>, <span class="dt">scale =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dt">log =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## [1] 0.4480836</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw">pgamma</span>(<span class="dv">1</span>, <span class="dt">shape =</span><span class="dv">2</span>, <span class="dt">scale =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dt">lower.tail =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb65-2" title="2">       <span class="dt">log.p =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## [1] 0.8008517</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="kw">qgamma</span>(<span class="fl">0.8</span>, <span class="dt">shape =</span> <span class="dv">2</span>,  <span class="dt">scale =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dt">lower.tail =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb67-2" title="2">       <span class="dt">log.p =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## [1] 0.9981028</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="kw">rgamma</span>(<span class="dv">10</span>, <span class="dt">shape =</span><span class="dv">2</span> , <span class="dt">scale =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</a></code></pre></div>
+<pre><code>##  [1] 0.3117027 0.5663228 1.8567817 0.1403567 0.7776307 0.8252981 1.4063366
+##  [8] 0.7292312 0.9434481 0.9001169</code></pre>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div id="references" class="section level2">
+<h2><span class="header-section-number">3.7</span> References</h2>
+<p>Discrete
+<a href="http://www.r-tutor.com/elementary-statistics/probability-distributions" class="uri">http://www.r-tutor.com/elementary-statistics/probability-distributions</a></p>
+<p><a href="https://rstudio-pubs-static.s3.amazonaws.com/100906_8e3a32dd11c14b839468db756cee7400.html" class="uri">https://rstudio-pubs-static.s3.amazonaws.com/100906_8e3a32dd11c14b839468db756cee7400.html</a></p>
 
+</div>
 </div>
             </section>
 
@@ -172,7 +493,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="differentiation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="applications.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="linear-regression-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

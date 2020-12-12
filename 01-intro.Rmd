@@ -1,9 +1,11 @@
-# Introduction {#intro}
+# Introduction to R {#intro}
+
+\pagenumbering{arabic}
 
 ## Installing R
 
 - **Step 1:** First download R freely from the Comprehensive R Archive Network (CRAN) [https://cran.r-project.org/](https://cran.r-project.org/).
-(At the moment of writing, R 4.0.2  is the latest version. Choose the most recent one.)
+(At the moment of writing, R 4.0.3  is the latest version. Choose the most recent one.)
 
 - **Step 2:** Then install R Studio’s IDE (stands for integrated development environment), a powerful user interface for R from [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/). Get the Open Source Edition of RStudio Desktop. RStudio allows you to run R in a more user-friendly environment.
 
@@ -81,4 +83,6 @@ library(tidyverse)
 
 <!-- https://rpubs.com/venkatritch/333327-->
 
+## Getting started with R
 
+[An Introduction to R: https://cran.r-project.org/doc/manuals/R-intro.pdf](https://cran.r-project.org/doc/manuals/R-intro.pdf)
