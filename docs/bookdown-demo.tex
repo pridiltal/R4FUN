@@ -1,39 +1,46 @@
-\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 %
-\documentclass[]{book}
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provides euro and other symbols
-\else % if luatex or xelatex
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
   \usepackage{unicode-math}
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\usepackage{hyperref}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-            pdftitle={Fundamentals of Mathematics and Statistics with R},
-            pdfauthor={Dr.~Priyanga D. Talagala},
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
+  pdftitle={Fundamentals of Mathematics and Statistics with R},
+  pdfauthor={Dr.~Priyanga D. Talagala},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -74,10 +81,17 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\usepackage{longtable,booktabs}
-% Fix footnotes in tables (requires footnote package)
-\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
-\usepackage{graphicx,grffile}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -86,25 +100,14 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-% set default figure placement to htbp
+% Set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
 \usepackage{booktabs}
 \usepackage{amsthm}
 \makeatletter
@@ -115,19 +118,22 @@
 \makeatother
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyfoot[CO,CE]{Prepared by Dr. Priyanga D. Talagala  (Copyright 2020 Priyanga D. Talagala)}
+\fancyfoot[CO,CE]{Prepared by Dr. Priyanga D. Talagala  (Copyright 2021 P. D. Talagala)}
 \fancyfoot[LE,RO]{\thepage}
 \usepackage{wrapfig}
 \usepackage{floatrow}
 \floatplacement{figure}{H}
 \floatplacement{table}{H}
 \makeatletter\renewcommand*{\fps@figure}{H}\makeatother
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 
 \title{Fundamentals of Mathematics and Statistics with R}
 \author{Dr.~Priyanga D. Talagala}
-\date{2020-12-12}
+\date{2021-07-10}
 
 \begin{document}
 \maketitle
@@ -178,9 +184,9 @@ The RStudio interface consists of four windows (see Figure 1 and 2).
   Bottom right: Files / plots / packages / help window.
 \end{enumerate}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/Rstudio1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{figure/Rstudio1} \end{center}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/Rstudio2} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{figure/Rstudio2} \end{center}
 
 Now you are familiar with the layout. Let's begin with R basics.
 
@@ -200,7 +206,7 @@ The following the code installs the \texttt{tidyverse} package from CRAN
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -229,19 +235,19 @@ The following the code installs the \texttt{tidyverse} package from CRAN
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
 \end{verbatim}
 
 \begin{verbatim}
-## v ggplot2 3.3.2     v purrr   0.3.4
-## v tibble  3.0.4     v dplyr   1.0.2
-## v tidyr   1.1.2     v stringr 1.4.0
-## v readr   1.4.0     v forcats 0.5.0
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.2     v dplyr   1.0.7
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1
 \end{verbatim}
 
 \begin{verbatim}
@@ -268,7 +274,7 @@ First, we take the equation as an expression
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{f <-}\StringTok{ }\KeywordTok{expression}\NormalTok{(x}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\NormalTok{f }\OtherTok{\textless{}{-}} \FunctionTok{expression}\NormalTok{(x}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -277,8 +283,8 @@ To calculate first derivative of \(f\), we use \texttt{D()} function and \texttt
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{f_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{D}\NormalTok{(f, }\StringTok{"x"}\NormalTok{)}
-\KeywordTok{print}\NormalTok{(f_}\DecValTok{1}\NormalTok{)}
+\NormalTok{f\_1 }\OtherTok{\textless{}{-}} \FunctionTok{D}\NormalTok{(f, }\StringTok{"x"}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(f\_1)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -290,13 +296,13 @@ Sketch the graph of \(f\) and \(f^\prime\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(ggplot2)}
-\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
-\NormalTok{y <-}\StringTok{ }\KeywordTok{eval}\NormalTok{(f)}
-\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
-\NormalTok{y1 <-}\StringTok{ }\KeywordTok{eval}\NormalTok{(f_}\DecValTok{1}\NormalTok{)}
-\NormalTok{data <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(x, y, y1)}
-\KeywordTok{head}\NormalTok{(data)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{eval}\NormalTok{(f)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{y1 }\OtherTok{\textless{}{-}} \FunctionTok{eval}\NormalTok{(f\_1)}
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(x, y, y1)}
+\FunctionTok{head}\NormalTok{(data)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -312,9 +318,9 @@ Sketch the graph of \(f\) and \(f^\prime\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(data, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
-\KeywordTok{print}\NormalTok{(p)}
+\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{()}
+\FunctionTok{print}\NormalTok{(p)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -322,9 +328,9 @@ Sketch the graph of \(f\) and \(f^\prime\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{q <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(data, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y1)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
-\KeywordTok{print}\NormalTok{(q)}
+\NormalTok{q }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y1)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{()}
+\FunctionTok{print}\NormalTok{(q)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -337,8 +343,8 @@ The following R command can be used to find second derivative of the above \(f\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{f_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\KeywordTok{D}\NormalTok{(}\KeywordTok{D}\NormalTok{(f, }\StringTok{"x"}\NormalTok{), }\StringTok{"x"}\NormalTok{)}
-\KeywordTok{print}\NormalTok{(f_}\DecValTok{2}\NormalTok{)}
+\NormalTok{f\_2 }\OtherTok{\textless{}{-}} \FunctionTok{D}\NormalTok{(}\FunctionTok{D}\NormalTok{(f, }\StringTok{"x"}\NormalTok{), }\StringTok{"x"}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(f\_2)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -348,11 +354,11 @@ The following R command can be used to find second derivative of the above \(f\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
-\NormalTok{y2 <-}\StringTok{ }\KeywordTok{eval}\NormalTok{(f_}\DecValTok{2}\NormalTok{)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{y2 }\OtherTok{\textless{}{-}} \FunctionTok{eval}\NormalTok{(f\_2)}
 
-\NormalTok{data <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(x, y, y1, y2)}
-\KeywordTok{head}\NormalTok{(data)}
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(x, y, y1, y2)}
+\FunctionTok{head}\NormalTok{(data)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -368,9 +374,9 @@ The following R command can be used to find second derivative of the above \(f\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(data, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
-\KeywordTok{print}\NormalTok{(p)}
+\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{()}
+\FunctionTok{print}\NormalTok{(p)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -378,9 +384,9 @@ The following R command can be used to find second derivative of the above \(f\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{q <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(data, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y1)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{colour =} \StringTok{"red"}\NormalTok{)}
-\KeywordTok{print}\NormalTok{(q)}
+\NormalTok{q }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y1)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{colour =} \StringTok{"red"}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(q)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -388,9 +394,9 @@ The following R command can be used to find second derivative of the above \(f\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{r <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(data, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y2)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{colour =} \StringTok{"blue"}\NormalTok{)}
-\KeywordTok{print}\NormalTok{(r)}
+\NormalTok{r }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y2)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{colour =} \StringTok{"blue"}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(r)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -403,14 +409,14 @@ If the expression is having more than one independent variable, we can calculate
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{f <-}\StringTok{ }\KeywordTok{expression}\NormalTok{(x}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{y}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\NormalTok{f }\OtherTok{\textless{}{-}} \FunctionTok{expression}\NormalTok{(x}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ y}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
 
-\NormalTok{x <-}\StringTok{ }\NormalTok{y <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DataTypeTok{length =} \DecValTok{20}\NormalTok{)}
-\NormalTok{surface <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y) \{}
-  \KeywordTok{eval}\NormalTok{(f)}
+\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ y }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\AttributeTok{length =} \DecValTok{20}\NormalTok{)}
+\NormalTok{surface }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x, y) \{}
+  \FunctionTok{eval}\NormalTok{(f)}
 \NormalTok{\}}
-\NormalTok{z <-}\StringTok{ }\KeywordTok{outer}\NormalTok{(x, y, surface)}
-\KeywordTok{persp}\NormalTok{(x, y, z)}
+\NormalTok{z }\OtherTok{\textless{}{-}} \FunctionTok{outer}\NormalTok{(x, y, surface)}
+\FunctionTok{persp}\NormalTok{(x, y, z)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -420,7 +426,7 @@ Differentiate with respect to \texttt{x}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{D}\NormalTok{(f, }\StringTok{"x"}\NormalTok{)}
+\FunctionTok{D}\NormalTok{(f, }\StringTok{"x"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -432,7 +438,7 @@ Differentiate with respect to \texttt{y}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{D}\NormalTok{(f, }\StringTok{"y"}\NormalTok{)}
+\FunctionTok{D}\NormalTok{(f, }\StringTok{"y"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -507,7 +513,7 @@ Differentiate with respect to \texttt{y}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{pnorm}\NormalTok{(}\FloatTok{1.281552}\NormalTok{)}
+\FunctionTok{pnorm}\NormalTok{(}\FloatTok{1.281552}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -517,7 +523,7 @@ Differentiate with respect to \texttt{y}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{pnorm}\NormalTok{(}\FloatTok{1.281552}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{)}
+\FunctionTok{pnorm}\NormalTok{(}\FloatTok{1.281552}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -527,7 +533,7 @@ Differentiate with respect to \texttt{y}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{pnorm}\NormalTok{(}\FloatTok{1.281552}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{FALSE}\NormalTok{) }
+\FunctionTok{pnorm}\NormalTok{(}\FloatTok{1.281552}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{) }
 \end{Highlighting}
 \end{Shaded}
 
@@ -537,7 +543,7 @@ Differentiate with respect to \texttt{y}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{1}\OperatorTok{-}\KeywordTok{pnorm}\NormalTok{(}\FloatTok{1.281552}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{)}
+\DecValTok{1}\SpecialCharTok{{-}}\FunctionTok{pnorm}\NormalTok{(}\FloatTok{1.281552}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -570,7 +576,7 @@ Differentiate with respect to \texttt{y}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.5}\NormalTok{)}
+\FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -580,7 +586,7 @@ Differentiate with respect to \texttt{y}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.9}\NormalTok{)}
+\FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.9}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -590,7 +596,7 @@ Differentiate with respect to \texttt{y}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{FALSE}\NormalTok{)}
+\FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -600,7 +606,7 @@ Differentiate with respect to \texttt{y}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.9}\NormalTok{,  }\DataTypeTok{lower.tail =} \OtherTok{FALSE}\NormalTok{)}
+\FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.9}\NormalTok{,  }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -638,7 +644,7 @@ If \(Z\sim N(0,1)\), then
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{dnorm}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+\FunctionTok{dnorm}\NormalTok{(}\DecValTok{0}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -648,7 +654,7 @@ If \(Z\sim N(0,1)\), then
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{pi)}
+\DecValTok{1}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{pi)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -669,7 +675,7 @@ If \(Z\sim N(0,1)\), then
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{dnorm}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\FunctionTok{dnorm}\NormalTok{(}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -679,7 +685,7 @@ If \(Z\sim N(0,1)\), then
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(}\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{pi)) }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
+\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{pi)) }\SpecialCharTok{*} \FunctionTok{exp}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\SpecialCharTok{/}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -705,7 +711,7 @@ If \(Z\sim N(0,1)\), then
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
 \NormalTok{x}
 \end{Highlighting}
 \end{Shaded}
@@ -717,7 +723,7 @@ If \(Z\sim N(0,1)\), then
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{hist}\NormalTok{(x)}
+\FunctionTok{hist}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -725,8 +731,8 @@ If \(Z\sim N(0,1)\), then
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{y<-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{)}
-\KeywordTok{hist}\NormalTok{(y)}
+\NormalTok{y}\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{)}
+\FunctionTok{hist}\NormalTok{(y)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -737,28 +743,28 @@ If \(Z\sim N(0,1)\), then
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule
-Distribution & R name & Additional arguments\tabularnewline
+Distribution & R name & Additional arguments \\
 \midrule
 \endhead
-beta & \texttt{beta} & \texttt{shape1,\ shape\ 2,\ ncp}\tabularnewline
-binomial & \texttt{binom} & \texttt{size,\ prob}\tabularnewline
-Cauchy & \texttt{cauchy} & \texttt{location,\ scale}\tabularnewline
-chi-squared & \texttt{chisq} & \texttt{df,\ ncp}\tabularnewline
-exponential & \texttt{exp} & \texttt{rate}\tabularnewline
-F & \texttt{f} & \texttt{df1,\ df2,\ ncp}\tabularnewline
-gamma & \texttt{gamma} & \texttt{shape,\ scale}\tabularnewline
-geometric & \texttt{geom} & \texttt{prob}\tabularnewline
-hypergeometric & \texttt{hyper} & \texttt{m,\ n,\ k}\tabularnewline
-log-normal & \texttt{lnorm} & \texttt{meanlog,\ sdlog}\tabularnewline
-logistic & \texttt{logis} & \texttt{location,\ scale}\tabularnewline
-negative binomial & \texttt{nbinom} & \texttt{size,\ prob}\tabularnewline
-normal & \texttt{norm} & \texttt{mean,\ sd}\tabularnewline
-Poisson & \texttt{pois} & \texttt{lambda}\tabularnewline
-signed rank & \texttt{signrank} & \texttt{n}\tabularnewline
-Student's t & \texttt{t} & \texttt{df,\ ncp}\tabularnewline
-uniform & \texttt{unif} & \texttt{min,\ max}\tabularnewline
-Weibull & \texttt{weibull} & \texttt{shape,\ scale}\tabularnewline
-Wilcoxon & \texttt{wilcox} & \texttt{m,\ n}\tabularnewline
+beta & \texttt{beta} & \texttt{shape1,\ shape\ 2,\ ncp} \\
+binomial & \texttt{binom} & \texttt{size,\ prob} \\
+Cauchy & \texttt{cauchy} & \texttt{location,\ scale} \\
+chi-squared & \texttt{chisq} & \texttt{df,\ ncp} \\
+exponential & \texttt{exp} & \texttt{rate} \\
+F & \texttt{f} & \texttt{df1,\ df2,\ ncp} \\
+gamma & \texttt{gamma} & \texttt{shape,\ scale} \\
+geometric & \texttt{geom} & \texttt{prob} \\
+hypergeometric & \texttt{hyper} & \texttt{m,\ n,\ k} \\
+log-normal & \texttt{lnorm} & \texttt{meanlog,\ sdlog} \\
+logistic & \texttt{logis} & \texttt{location,\ scale} \\
+negative binomial & \texttt{nbinom} & \texttt{size,\ prob} \\
+normal & \texttt{norm} & \texttt{mean,\ sd} \\
+Poisson & \texttt{pois} & \texttt{lambda} \\
+signed rank & \texttt{signrank} & \texttt{n} \\
+Student's t & \texttt{t} & \texttt{df,\ ncp} \\
+uniform & \texttt{unif} & \texttt{min,\ max} \\
+Weibull & \texttt{weibull} & \texttt{shape,\ scale} \\
+Wilcoxon & \texttt{wilcox} & \texttt{m,\ n} \\
 \bottomrule
 \end{longtable}
 
@@ -779,20 +785,20 @@ Wilcoxon & \texttt{wilcox} & \texttt{m,\ n}\tabularnewline
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# ?dnorm - Help page}
+\CommentTok{\# ?dnorm {-} Help page}
 
-\KeywordTok{dnorm}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{log =} \OtherTok{FALSE}\NormalTok{)}
-\KeywordTok{pnorm}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{log.p =} \OtherTok{FALSE}\NormalTok{)}
-\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{log.p =} \OtherTok{FALSE}\NormalTok{)}
-\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{10}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{)}
+\FunctionTok{dnorm}\NormalTok{(}\DecValTok{2}\NormalTok{, }\AttributeTok{mean =} \DecValTok{2}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{, }\AttributeTok{log =} \ConstantTok{FALSE}\NormalTok{)}
+\FunctionTok{pnorm}\NormalTok{(}\DecValTok{2}\NormalTok{, }\AttributeTok{mean =} \DecValTok{2}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{log.p =} \ConstantTok{FALSE}\NormalTok{)}
+\FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\AttributeTok{mean =} \DecValTok{2}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{log.p =} \ConstantTok{FALSE}\NormalTok{)}
+\FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{10}\NormalTok{, }\AttributeTok{mean =} \DecValTok{2}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# ?dnorm - Help page}
+\CommentTok{\# ?dnorm {-} Help page}
 
-\KeywordTok{dnorm}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{log =} \OtherTok{FALSE}\NormalTok{)}
+\FunctionTok{dnorm}\NormalTok{(}\DecValTok{2}\NormalTok{, }\AttributeTok{mean =} \DecValTok{2}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{, }\AttributeTok{log =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -802,7 +808,7 @@ Wilcoxon & \texttt{wilcox} & \texttt{m,\ n}\tabularnewline
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{pnorm}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{log.p =} \OtherTok{FALSE}\NormalTok{)}
+\FunctionTok{pnorm}\NormalTok{(}\DecValTok{2}\NormalTok{, }\AttributeTok{mean =} \DecValTok{2}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{log.p =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -812,7 +818,7 @@ Wilcoxon & \texttt{wilcox} & \texttt{m,\ n}\tabularnewline
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{log.p =} \OtherTok{FALSE}\NormalTok{)}
+\FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\AttributeTok{mean =} \DecValTok{2}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{log.p =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -822,7 +828,7 @@ Wilcoxon & \texttt{wilcox} & \texttt{m,\ n}\tabularnewline
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{10}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{)}
+\FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n=}\DecValTok{10}\NormalTok{, }\AttributeTok{mean =} \DecValTok{2}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -845,18 +851,18 @@ Wilcoxon & \texttt{wilcox} & \texttt{m,\ n}\tabularnewline
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{dgamma}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DataTypeTok{shape =}\DecValTok{2}\NormalTok{, }\DataTypeTok{scale =} \DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{, }\DataTypeTok{log =} \OtherTok{FALSE}\NormalTok{)}
-\KeywordTok{pgamma}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DataTypeTok{shape =}\DecValTok{2}\NormalTok{, }\DataTypeTok{scale =} \DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{,}
-       \DataTypeTok{log.p =} \OtherTok{FALSE}\NormalTok{)}
-\KeywordTok{qgamma}\NormalTok{(}\FloatTok{0.8}\NormalTok{, }\DataTypeTok{shape =} \DecValTok{2}\NormalTok{,  }\DataTypeTok{scale =} \DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{,}
-       \DataTypeTok{log.p =} \OtherTok{FALSE}\NormalTok{)}
-\KeywordTok{rgamma}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DataTypeTok{shape =}\DecValTok{2}\NormalTok{ , }\DataTypeTok{scale =} \DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{)}
+\FunctionTok{dgamma}\NormalTok{(}\DecValTok{1}\NormalTok{, }\AttributeTok{shape =}\DecValTok{2}\NormalTok{, }\AttributeTok{scale =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{3}\NormalTok{, }\AttributeTok{log =} \ConstantTok{FALSE}\NormalTok{)}
+\FunctionTok{pgamma}\NormalTok{(}\DecValTok{1}\NormalTok{, }\AttributeTok{shape =}\DecValTok{2}\NormalTok{, }\AttributeTok{scale =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{3}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{TRUE}\NormalTok{,}
+       \AttributeTok{log.p =} \ConstantTok{FALSE}\NormalTok{)}
+\FunctionTok{qgamma}\NormalTok{(}\FloatTok{0.8}\NormalTok{, }\AttributeTok{shape =} \DecValTok{2}\NormalTok{,  }\AttributeTok{scale =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{3}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{TRUE}\NormalTok{,}
+       \AttributeTok{log.p =} \ConstantTok{FALSE}\NormalTok{)}
+\FunctionTok{rgamma}\NormalTok{(}\DecValTok{10}\NormalTok{, }\AttributeTok{shape =}\DecValTok{2}\NormalTok{ , }\AttributeTok{scale =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{dgamma}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DataTypeTok{shape =}\DecValTok{2}\NormalTok{, }\DataTypeTok{scale =} \DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{, }\DataTypeTok{log =} \OtherTok{FALSE}\NormalTok{)}
+\FunctionTok{dgamma}\NormalTok{(}\DecValTok{1}\NormalTok{, }\AttributeTok{shape =}\DecValTok{2}\NormalTok{, }\AttributeTok{scale =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{3}\NormalTok{, }\AttributeTok{log =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -866,8 +872,8 @@ Wilcoxon & \texttt{wilcox} & \texttt{m,\ n}\tabularnewline
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{pgamma}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DataTypeTok{shape =}\DecValTok{2}\NormalTok{, }\DataTypeTok{scale =} \DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{,}
-       \DataTypeTok{log.p =} \OtherTok{FALSE}\NormalTok{)}
+\FunctionTok{pgamma}\NormalTok{(}\DecValTok{1}\NormalTok{, }\AttributeTok{shape =}\DecValTok{2}\NormalTok{, }\AttributeTok{scale =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{3}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{TRUE}\NormalTok{,}
+       \AttributeTok{log.p =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -877,8 +883,8 @@ Wilcoxon & \texttt{wilcox} & \texttt{m,\ n}\tabularnewline
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{qgamma}\NormalTok{(}\FloatTok{0.8}\NormalTok{, }\DataTypeTok{shape =} \DecValTok{2}\NormalTok{,  }\DataTypeTok{scale =} \DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{TRUE}\NormalTok{,}
-       \DataTypeTok{log.p =} \OtherTok{FALSE}\NormalTok{)}
+\FunctionTok{qgamma}\NormalTok{(}\FloatTok{0.8}\NormalTok{, }\AttributeTok{shape =} \DecValTok{2}\NormalTok{,  }\AttributeTok{scale =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{3}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{TRUE}\NormalTok{,}
+       \AttributeTok{log.p =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -888,7 +894,7 @@ Wilcoxon & \texttt{wilcox} & \texttt{m,\ n}\tabularnewline
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{rgamma}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DataTypeTok{shape =}\DecValTok{2}\NormalTok{ , }\DataTypeTok{scale =} \DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{)}
+\FunctionTok{rgamma}\NormalTok{(}\DecValTok{10}\NormalTok{, }\AttributeTok{shape =}\DecValTok{2}\NormalTok{ , }\AttributeTok{scale =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -934,12 +940,12 @@ The following R packages are required for this chapter:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(ggplot2)}
-\KeywordTok{library}\NormalTok{(datarium)}
-\CommentTok{## To learn more about the dataset}
-\CommentTok{# ?marketing}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(datarium)}
+\DocumentationTok{\#\# To learn more about the dataset}
+\CommentTok{\# ?marketing}
 
-\KeywordTok{library}\NormalTok{(GGally)}
+\FunctionTok{library}\NormalTok{(GGally)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -954,8 +960,8 @@ The following R packages are required for this chapter:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{data}\NormalTok{(marketing)}
-\KeywordTok{head}\NormalTok{(marketing)}
+\FunctionTok{data}\NormalTok{(marketing)}
+\FunctionTok{head}\NormalTok{(marketing)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -971,7 +977,7 @@ The following R packages are required for this chapter:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(marketing)}
+\FunctionTok{summary}\NormalTok{(marketing)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -999,11 +1005,11 @@ The following R packages are required for this chapter:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ marketing, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ facebook, }\DataTypeTok{y =}\NormalTok{ sales)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{aspect.ratio =} \DecValTok{1}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Sales"}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"facebook"}\NormalTok{)}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ marketing, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ facebook, }\AttributeTok{y =}\NormalTok{ sales)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{aspect.ratio =} \DecValTok{1}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{"Sales"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{ylab}\NormalTok{(}\StringTok{"facebook"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1026,10 +1032,10 @@ The following R packages are required for this chapter:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Check correlations (as scatterplots), distribution and print corrleation coefficient }
+\CommentTok{\# Check correlations (as scatterplots), distribution and print corrleation coefficient }
 
-\KeywordTok{ggpairs}\NormalTok{(marketing, }\DataTypeTok{title=}\StringTok{"correlogram with ggpairs()"}\NormalTok{) }\OperatorTok{+}
-\StringTok{   }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{aspect.ratio =} \DecValTok{1}\NormalTok{)}
+\FunctionTok{ggpairs}\NormalTok{(marketing, }\AttributeTok{title=}\StringTok{"correlogram with ggpairs()"}\NormalTok{) }\SpecialCharTok{+}
+   \FunctionTok{theme}\NormalTok{(}\AttributeTok{aspect.ratio =} \DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1067,8 +1073,8 @@ The following R packages are required for this chapter:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#lm(y ~ x)}
-\NormalTok{reg <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(sales }\OperatorTok{~}\StringTok{ }\NormalTok{facebook,  }\DataTypeTok{data =}\NormalTok{ marketing)}
+\CommentTok{\#lm(y \textasciitilde{} x)}
+\NormalTok{reg }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(sales }\SpecialCharTok{\textasciitilde{}}\NormalTok{ facebook,  }\AttributeTok{data =}\NormalTok{ marketing)}
 
 \NormalTok{reg}
 \end{Highlighting}
@@ -1086,7 +1092,7 @@ The following R packages are required for this chapter:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(reg)}
+\FunctionTok{summary}\NormalTok{(reg)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1116,8 +1122,8 @@ The following R packages are required for this chapter:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(reg)}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(reg)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1160,8 +1166,8 @@ You can compute the model coefficients in R as follow:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{m_reg <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(sales }\OperatorTok{~}\StringTok{ }\NormalTok{youtube }\OperatorTok{+}\StringTok{ }\NormalTok{facebook }\OperatorTok{+}\StringTok{ }\NormalTok{newspaper, }\DataTypeTok{data =}\NormalTok{ marketing)}
-\KeywordTok{summary}\NormalTok{(m_reg)}
+\NormalTok{m\_reg }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(sales }\SpecialCharTok{\textasciitilde{}}\NormalTok{ youtube }\SpecialCharTok{+}\NormalTok{ facebook }\SpecialCharTok{+}\NormalTok{ newspaper, }\AttributeTok{data =}\NormalTok{ marketing)}
+\FunctionTok{summary}\NormalTok{(m\_reg)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1232,8 +1238,8 @@ You can compute the model coefficients in R as follow:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(m_reg)}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(m\_reg)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1250,10 +1256,10 @@ You can compute the model coefficients in R as follow:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{new.budget <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
-  \DataTypeTok{youtube =} \KeywordTok{c}\NormalTok{(}\DecValTok{150}\NormalTok{, }\DecValTok{200}\NormalTok{, }\DecValTok{100}\NormalTok{),}
-  \DataTypeTok{facebook =} \KeywordTok{c}\NormalTok{( }\DecValTok{150}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{200}\NormalTok{),}
-  \DataTypeTok{newspaper =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\NormalTok{new.budget }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{youtube =} \FunctionTok{c}\NormalTok{(}\DecValTok{150}\NormalTok{, }\DecValTok{200}\NormalTok{, }\DecValTok{100}\NormalTok{),}
+  \AttributeTok{facebook =} \FunctionTok{c}\NormalTok{( }\DecValTok{150}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{200}\NormalTok{),}
+  \AttributeTok{newspaper =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)}
 \NormalTok{)}
 \NormalTok{new.budget}
 \end{Highlighting}
@@ -1268,7 +1274,7 @@ You can compute the model coefficients in R as follow:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{predict}\NormalTok{(m_reg, new.budget)}
+\FunctionTok{predict}\NormalTok{(m\_reg, new.budget)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1281,11 +1287,11 @@ You can compute the model coefficients in R as follow:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{new.facebook <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
-  \DataTypeTok{facebook =} \KeywordTok{c}\NormalTok{(}\DecValTok{50}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{200}\NormalTok{)}
+\NormalTok{new.facebook }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{facebook =} \FunctionTok{c}\NormalTok{(}\DecValTok{50}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{200}\NormalTok{)}
 \NormalTok{)}
 
-\KeywordTok{predict}\NormalTok{(reg, new.facebook)}
+\FunctionTok{predict}\NormalTok{(reg, new.facebook)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1334,7 +1340,7 @@ explore mtcars: \url{https://cran.r-project.org/web/packages/explore/vignettes/e
 
 descrpive statistics: \url{https://rpubs.com/rpubsNovice/459602}
 
-mpg: \url{https://www.sandicliffe.co.uk/blog/what-is-mpg\#}:\textasciitilde{}:text=MPG\%20is\%20an\%20abbreviation\%20for,a\%20car\%20or\%20commercial\%20vehicle.\&text=If\%20one\%20model\%20has\%20fuel,the\%20same\%20amount\%20of\%20fuel.
+mpg: \url{https://www.sandicliffe.co.uk/blog/what-is-mpg\#}:\textasciitilde:text=MPG\%20is\%20an\%20abbreviation\%20for,a\%20car\%20or\%20commercial\%20vehicle.\&text=If\%20one\%20model\%20has\%20fuel,the\%20same\%20amount\%20of\%20fuel.
 
 horseower: \url{https://www.quora.com/Why-does-horsepower-matter-Does-it-mean-better-MPG-or-something}
 
@@ -1344,6 +1350,6 @@ code mtcars data : \url{http://psych.colorado.edu/~lharvey/P4165/P4165_2018_1_Sp
 
 page 15
 
-\bibliography{book.bib,packages.bib}
+  \bibliography{book.bib,packages.bib}
 
 \end{document}

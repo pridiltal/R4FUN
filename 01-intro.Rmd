@@ -29,12 +29,12 @@ The RStudio interface consists of four windows (see Figure 1 and 2).
 4.	Bottom right: Files / plots / packages / help window.
 
 
-```{r   out.width = "90%", echo = FALSE, fig.align='center'}
+```{r   out.width = "100%", echo = FALSE, fig.align='center'}
 knitr::include_graphics("figure/Rstudio1.png")
 ```
 
 
-```{r   out.width = "90%", echo = FALSE, fig.align='center'}
+```{r   out.width = "100%", echo = FALSE, fig.align='center'}
 knitr::include_graphics("figure/Rstudio2.png")
 ```
 
