@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Fundamentals of Mathematics and Statistics with R</title>
-  <meta name="description" content="Fundamentals of Mathematics and Statistics with R" />
+  <title>Page not found | Fundamentals of Mathematics and Statistics with R</title>
+  <meta name="description" content="Page not found | Fundamentals of Mathematics and Statistics with R" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Fundamentals of Mathematics and Statistics with R" />
+  <meta property="og:title" content="Page not found | Fundamentals of Mathematics and Statistics with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Fundamentals of Mathematics and Statistics with R" />
+  <meta name="twitter:title" content="Page not found | Fundamentals of Mathematics and Statistics with R" />
   
   
   
@@ -32,7 +32,7 @@
   
   
 
-<link rel="next" href="differentiation.html"/>
+
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -204,82 +204,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Fundamentals of Mathematics and Statistics with R</h1>
-<p class="author"><em>Dr. Priyanga D. Talagala</em></p>
-<p class="date"><em>2022-01-16</em></p>
-</div>
-<div id="intro" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction to R</h1>
-<div id="installing-r" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Installing R</h2>
-<ul>
-<li><p><strong>Step 1:</strong> First download R freely from the Comprehensive R Archive Network (CRAN) <a href="https://cran.r-project.org/">https://cran.r-project.org/</a>.
-(At the moment of writing, R 4.0.3 is the latest version. Choose the most recent one.)</p></li>
-<li><p><strong>Step 2:</strong> Then install R Studio’s IDE (stands for integrated development environment), a powerful user interface for R from <a href="https://rstudio.com/products/rstudio/download/">https://rstudio.com/products/rstudio/download/</a>. Get the Open Source Edition of RStudio Desktop. RStudio allows you to run R in a more user-friendly environment.</p>
-<ul>
-<li><p>You need to install <strong>both</strong> R and Rstudio to use RStudio.</p></li>
-<li><p>If you have a pre-existing installation of R and/or RStudio, I highly recommend that you re install both and get as current as possible.</p></li>
-</ul></li>
-<li><p><strong>Step 3:</strong> Then open <strong>Rstudio</strong>.</p></li>
-</ul>
-</div>
-<div id="rstudio-layout" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> RStudio layout</h2>
-<p>The RStudio interface consists of four windows (see Figure 1 and 2).</p>
-<ol style="list-style-type: decimal">
-<li><p>Bottom left: console window (also called command window). <strong>This is where you type and run all your R commands</strong></p></li>
-<li><p>Top left: editor window (also called script window).</p></li>
-<li><p>Top right: workspace / history window.</p></li>
-<li><p>Bottom right: Files / plots / packages / help window.</p></li>
-</ol>
-<p><img src="figure/Rstudio1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p><img src="figure/Rstudio2.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>Now you are familiar with the layout. Let’s begin with R basics.</p>
-</div>
-<div id="installing-an-r-package" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Installing an R Package</h2>
-<!-- http://jtleek.com/modules/01_DataScientistToolbox/02_09_installingRPackages/#3-->
-<ul>
-<li><p>The primary location for obtaining R packages is CRAN</p></li>
-<li><p>Packages can be installed with the <code>install.packages()</code> function in R</p></li>
-<li><p>To install a single package, pass the name of the package to the <code>install.packages()</code> function as the first argument</p></li>
-</ul>
-<p>The following the code installs the <code>tidyverse</code> package from CRAN</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
-<ul>
-<li><p>This command downloads the <code>tidyverse</code> package from CRAN and installs it on your computer</p></li>
-<li><p>Any packages on which this package depends will also be downloaded and installed</p></li>
-<li><p><strong>Installing the tidyverse package could take several minutes. You only need to do this once</strong>.</p></li>
-</ul>
-</div>
-<div id="loading-an-r-packages" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Loading an R Packages</h2>
-<ul>
-<li><p>Installing a package does not make it immediately available to you in R; you must load the package</p></li>
-<li><p>The <code>library()</code> function is used to load packages into R</p></li>
-<li><p>The following code is used to load the tidyverse package into R</p></li>
-<li><p><strong>NOTE:</strong> Do not put the package name in quotes!</p></li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-## ✓ tibble  3.1.6     ✓ dplyr   1.0.7
-## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
-## ✓ readr   1.4.0     ✓ forcats 0.5.1</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<ul>
-<li>Some packages produce messages when they are loaded (but some don’t)</li>
-</ul>
-<!-- https://rpubs.com/venkatritch/333327-->
-</div>
-<div id="getting-started-with-r" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> Getting started with R</h2>
-<p><a href="https://cran.r-project.org/doc/manuals/R-intro.pdf">An Introduction to R: https://cran.r-project.org/doc/manuals/R-intro.pdf</a></p>
-
-</div>
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
 </div>
             </section>
 
@@ -287,7 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 
-<a href="differentiation.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -318,7 +247,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/%s",
 "text": "Edit"
 },
 "history": {
