@@ -6,8 +6,8 @@
 ]{book}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -33,14 +33,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Fundamentals of Mathematics and Statistics with R},
-  pdfauthor={Dr.~Priyanga D. Talagala},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -118,22 +110,30 @@
 \makeatother
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyfoot[CO,CE]{Prepared by Dr. Priyanga D. Talagala  (Copyright 2022 P. D. Talagala)}
+\fancyfoot[CO,CE]{Prepared by Dr. Priyanga D. Talagala  (Copyright 2023 P. D. Talagala)}
 \fancyfoot[LE,RO]{\thepage}
 \usepackage{wrapfig}
 \usepackage{floatrow}
 \floatplacement{figure}{H}
 \floatplacement{table}{H}
 \makeatletter\renewcommand*{\fps@figure}{H}\makeatother
-\ifluatex
+\ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Fundamentals of Mathematics and Statistics with R},
+  pdfauthor={Dr.~Priyanga D. Talagala},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Fundamentals of Mathematics and Statistics with R}
 \author{Dr.~Priyanga D. Talagala}
-\date{2022-01-16}
+\date{2023-01-14}
 
 \begin{document}
 \maketitle
@@ -153,7 +153,7 @@
 \begin{itemize}
 \item
   \textbf{Step 1:} First download R freely from the Comprehensive R Archive Network (CRAN) \url{https://cran.r-project.org/}.
-  (At the moment of writing, R 4.0.3 is the latest version. Choose the most recent one.)
+  (At the moment of writing, R 4.2.2 is the latest version. Choose the most recent one.)
 \item
   \textbf{Step 2:} Then install R Studio's IDE (stands for integrated development environment), a powerful user interface for R from \url{https://rstudio.com/products/rstudio/download/}. Get the Open Source Edition of RStudio Desktop. RStudio allows you to run R in a more user-friendly environment.
 
@@ -240,17 +240,11 @@ The following the code installs the \texttt{tidyverse} package from CRAN
 \end{Shaded}
 
 \begin{verbatim}
-## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
-\end{verbatim}
-
-\begin{verbatim}
-## v ggplot2 3.3.5     v purrr   0.3.4
-## v tibble  3.1.6     v dplyr   1.0.7
-## v tidyr   1.1.4     v stringr 1.4.0
-## v readr   1.4.0     v forcats 0.5.1
-\end{verbatim}
-
-\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.2 --
+## v ggplot2 3.4.0      v purrr   1.0.1 
+## v tibble  3.1.8      v dplyr   1.0.10
+## v tidyr   1.2.1      v stringr 1.4.1 
+## v readr   2.1.3      v forcats 0.5.2 
 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
@@ -742,9 +736,9 @@ If \(Z\sim N(0,1)\), then
 \section{Distributions in R}\label{distributions-in-r}}
 
 \begin{longtable}[]{@{}lll@{}}
-\toprule
+\toprule()
 Distribution & R name & Additional arguments \\
-\midrule
+\midrule()
 \endhead
 beta & \texttt{beta} & \texttt{shape1,\ shape\ 2,\ ncp} \\
 binomial & \texttt{binom} & \texttt{size,\ prob} \\
@@ -765,7 +759,7 @@ Student's t & \texttt{t} & \texttt{df,\ ncp} \\
 uniform & \texttt{unif} & \texttt{min,\ max} \\
 Weibull & \texttt{weibull} & \texttt{shape,\ scale} \\
 Wilcoxon & \texttt{wilcox} & \texttt{m,\ n} \\
-\bottomrule
+\bottomrule()
 \end{longtable}
 
 \hypertarget{exercise}{%
@@ -1222,7 +1216,7 @@ You can compute the model coefficients in R as follow:
 
 \textbf{NOTE}
 
-\emph{In our example, with youtube, newspaper and facebook predictor variables, the adjusted} \(R^2 = 0.89\), \emph{meaning that "89\% of the variance in the measure of sales can be predicted by youtube, newspaper and facebook advertising budgets.}
+\emph{In our example, with youtube, newspaper and facebook predictor variables, the adjusted} \(R^2 = 0.89\), \emph{meaning that ``89\% of the variance in the measure of sales can be predicted by youtube, newspaper and facebook advertising budgets.}
 
 \emph{This model is better than the simple linear model with only facebook, which had an adjusted} \(R^2\) \emph{of 0.05.}
 

@@ -13,7 +13,7 @@ header-includes:
 - \usepackage{fancyhdr}
 - \pagestyle{fancy}
 #- \fancyhead[CO,CE]{This is fancy header}
-- \fancyfoot[CO,CE]{Prepared by Dr. Priyanga D. Talagala  (Copyright 2022 P. D. Talagala)}
+- \fancyfoot[CO,CE]{Prepared by Dr. Priyanga D. Talagala  (Copyright 2023 P. D. Talagala)}
 - \fancyfoot[LE,RO]{\thepage}
 - \usepackage{wrapfig}
 #- \usepackage{float}
