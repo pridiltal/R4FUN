@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Statistical Distributions | Fundamentals of Mathematics and Statistics with R</title>
   <meta name="description" content="Chapter 3 Statistical Distributions | Fundamentals of Mathematics and Statistics with R" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Statistical Distributions | Fundamentals of Mathematics and Statistics with R" />
   <meta property="og:type" content="book" />
-  
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Dr. Priyanga D. Talagala" />
 
 
-<meta name="date" content="2022-01-16" />
+<meta name="date" content="2023-03-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="differentiation.html"/>
 <link rel="next" href="linear-regression-in-r.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -204,8 +203,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="statistical-distributions" class="section level1" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Statistical Distributions</h1>
+<div id="statistical-distributions" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Statistical Distributions<a href="statistical-distributions.html#statistical-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <ul>
 <li><p>Density, cumulative distribution function, quantile function and random variate generation for many standard probability distributions are available in the stats package.</p>
 <ul>
@@ -215,8 +214,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>rxxx : random variable generation.</li>
 </ul></li>
 </ul>
-<div id="pxxx" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> pxxx</h2>
+<div id="pxxx" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> pxxx<a href="statistical-distributions.html#pxxx" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Cumulative distribution function (lower tail probability)</strong></p>
 <p><em>Example : Standard normal distribution</em></p>
 <ul>
@@ -251,8 +250,8 @@ Figure 3.2: Standard normal distribution
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="statistical-distributions.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pnorm</span>(<span class="fl">1.281552</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 0.09999992</code></pre>
 </div>
-<div id="qxxx" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> qxxx</h2>
+<div id="qxxx" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> qxxx<a href="statistical-distributions.html#qxxx" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><em>Example : Standard normal distribution</em></p>
 <p><strong>The <code>qnorm</code> function is simply the inverse of the cdf, which you can also think of as the inverse of <code>pnorm</code>!</strong></p>
 <ul>
@@ -280,8 +279,8 @@ Figure 3.4: Standard normal distribution
 </p>
 </div>
 </div>
-<div id="dxxx" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> dxxx</h2>
+<div id="dxxx" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> dxxx<a href="statistical-distributions.html#dxxx" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><em>Example : Standard normal distribution</em></p>
 <p><strong>The function <code>dnorm</code> returns the value of the probability density function for the normal distribution given parameters for <span class="math inline">\(x\)</span>, <span class="math inline">\(\mu\)</span>, and <span class="math inline">\(\sigma\)</span>.</strong></p>
 <ul>
@@ -312,8 +311,8 @@ Figure 3.6: Standard normal distribution
 </p>
 </div>
 </div>
-<div id="rxxx" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> rxxx</h2>
+<div id="rxxx" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> rxxx<a href="statistical-distributions.html#rxxx" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><em>Example : Standard normal distribution</em></p>
 <p><code>rnorm(100)</code> generates 100 random deviates from a standard normal distribution.</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="statistical-distributions.html#cb49-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
@@ -326,8 +325,8 @@ Figure 3.6: Standard normal distribution
 <span id="cb52-2"><a href="statistical-distributions.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(y)</span></code></pre></div>
 <p><img src="figure/unnamed-chunk-19-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="distributions-in-r" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Distributions in R</h2>
+<div id="distributions-in-r" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Distributions in R<a href="statistical-distributions.html#distributions-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
 <thead>
 <tr class="header">
@@ -435,10 +434,10 @@ Figure 3.6: Standard normal distribution
 </tbody>
 </table>
 </div>
-<div id="exercise" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> Exercise</h2>
-<div id="normal" class="section level3" number="3.6.1">
-<h3><span class="header-section-number">3.6.1</span> Normal</h3>
+<div id="exercise" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Exercise<a href="statistical-distributions.html#exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="normal" class="section level3 hasAnchor" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> Normal<a href="statistical-distributions.html#normal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:norm6"></span>
 <img src="figure/norm6-1.png" alt="Standard normal distribution" width="960" />
 <p class="caption">
@@ -463,8 +462,8 @@ Figure 3.7: Standard normal distribution
 <pre><code>##  [1] 0.9919293 3.3549394 1.5310251 3.4681936 2.4425564 2.1462031 2.1715031
 ##  [8] 2.5925072 4.7647493 2.6192188</code></pre>
 </div>
-<div id="gamma" class="section level3" number="3.6.2">
-<h3><span class="header-section-number">3.6.2</span> Gamma</h3>
+<div id="gamma" class="section level3 hasAnchor" number="3.6.2">
+<h3><span class="header-section-number">3.6.2</span> Gamma<a href="statistical-distributions.html#gamma" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:gamma"></span>
 <img src="figure/gamma-1.png" alt="Standard normal distribution" width="960" />
 <p class="caption">
@@ -491,8 +490,8 @@ Figure 3.8: Standard normal distribution
 <div style="page-break-after: always;"></div>
 </div>
 </div>
-<div id="references" class="section level2" number="3.7">
-<h2><span class="header-section-number">3.7</span> References</h2>
+<div id="references" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> References<a href="statistical-distributions.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Discrete
 <a href="http://www.r-tutor.com/elementary-statistics/probability-distributions" class="uri">http://www.r-tutor.com/elementary-statistics/probability-distributions</a></p>
 <p><a href="https://rstudio-pubs-static.s3.amazonaws.com/100906_8e3a32dd11c14b839468db756cee7400.html" class="uri">https://rstudio-pubs-static.s3.amazonaws.com/100906_8e3a32dd11c14b839468db756cee7400.html</a></p>
@@ -565,7 +564,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

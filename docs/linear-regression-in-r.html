@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Linear Regression in R | Fundamentals of Mathematics and Statistics with R</title>
   <meta name="description" content="Linear Regression in R | Fundamentals of Mathematics and Statistics with R" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Linear Regression in R | Fundamentals of Mathematics and Statistics with R" />
   <meta property="og:type" content="book" />
-  
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Dr. Priyanga D. Talagala" />
 
 
-<meta name="date" content="2022-01-16" />
+<meta name="date" content="2023-03-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="statistical-distributions.html"/>
 <link rel="next" href="mtcars.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -204,12 +203,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="linear-regression-in-r" class="section level1 unnumbered">
-<h1>Linear Regression in R</h1>
+<div id="linear-regression-in-r" class="section level1 unnumbered hasAnchor">
+<h1>Linear Regression in R<a href="linear-regression-in-r.html#linear-regression-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In many practical situations we want to identify various types of relationships between variables. <strong>Regression analysis</strong> is a statistical technique for investigating and <strong>modeling the relationship between variables</strong>.</p>
 <p><strong>Linear regression</strong> attempts to model the relationship between a scalar response (or dependent variable) and one or more explanatory variables (or independent variables) by fitting a <strong>linear equation</strong> to observed data. The case of one explanatory variable is called <strong>simple linear regression.</strong></p>
-<div id="loading-required-r-packages" class="section level2" number="3.8">
-<h2><span class="header-section-number">3.8</span> Loading required R packages</h2>
+<div id="loading-required-r-packages" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> Loading required R packages<a href="linear-regression-in-r.html#loading-required-r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The following R packages are required for this chapter:</p>
 <ul>
 <li><code>ggplot2</code> for data visualization</li>
@@ -226,8 +225,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>We are going to use the marketing data set available in <code>datarium</code> package, which contains the impact of the amount of money spent on three advertising medias (youtube, Facebook and newspaper) on sales.</li>
 </ul>
 </div>
-<div id="load-data-set" class="section level2" number="3.9">
-<h2><span class="header-section-number">3.9</span> Load Data set</h2>
+<div id="load-data-set" class="section level2 hasAnchor" number="3.9">
+<h2><span class="header-section-number">3.9</span> Load Data set<a href="linear-regression-in-r.html#load-data-set" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="linear-regression-in-r.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(marketing)</span>
 <span id="cb72-2"><a href="linear-regression-in-r.html#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(marketing)</span></code></pre></div>
 <pre><code>##   youtube facebook newspaper sales
@@ -246,10 +245,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  3rd Qu.:262.59   3rd Qu.:43.83   3rd Qu.: 54.12   3rd Qu.:20.88  
 ##  Max.   :355.68   Max.   :59.52   Max.   :136.80   Max.   :32.40</code></pre>
 </div>
-<div id="explore-data" class="section level2" number="3.10">
-<h2><span class="header-section-number">3.10</span> Explore data</h2>
-<div id="scatterplot" class="section level3" number="3.10.1">
-<h3><span class="header-section-number">3.10.1</span> Scatterplot</h3>
+<div id="explore-data" class="section level2 hasAnchor" number="3.10">
+<h2><span class="header-section-number">3.10</span> Explore data<a href="linear-regression-in-r.html#explore-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="scatterplot" class="section level3 hasAnchor" number="3.10.1">
+<h3><span class="header-section-number">3.10.1</span> Scatterplot<a href="linear-regression-in-r.html#scatterplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Usually, the first step in regression analysis is to construct a scatter plot (or scatter matrix).</li>
 </ul>
@@ -260,8 +259,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb76-5"><a href="linear-regression-in-r.html#cb76-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;facebook&quot;</span>)</span></code></pre></div>
 <p><img src="figure/unnamed-chunk-26-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="scatterplot-matrix" class="section level3" number="3.10.2">
-<h3><span class="header-section-number">3.10.2</span> Scatterplot matrix</h3>
+<div id="scatterplot-matrix" class="section level3 hasAnchor" number="3.10.2">
+<h3><span class="header-section-number">3.10.2</span> Scatterplot matrix<a href="linear-regression-in-r.html#scatterplot-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>The <code>ggpairs()</code> function of the <code>GGally</code> package allows to build a great scatterplot matrix.</li>
 <li>Scatterplots of each pair of numeric variable are drawn on the left part of the figure.</li>
@@ -283,8 +282,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 </div>
-<div id="simple-linear-regression" class="section level2" number="3.11">
-<h2><span class="header-section-number">3.11</span> Simple Linear Regression</h2>
+<div id="simple-linear-regression" class="section level2 hasAnchor" number="3.11">
+<h2><span class="header-section-number">3.11</span> Simple Linear Regression<a href="linear-regression-in-r.html#simple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>The most elementary regression model is called <strong>simple linear regression</strong>.</p></li>
 <li><p>The variable to be predicted is called the <em>dependent variable</em> an is denoted by <span class="math inline">\(y\)</span>.</p></li>
@@ -321,8 +320,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 5.13 on 198 degrees of freedom
 ## Multiple R-squared:  0.332,  Adjusted R-squared:  0.3287 
 ## F-statistic: 98.42 on 1 and 198 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div id="residual-analysis" class="section level3" number="3.11.1">
-<h3><span class="header-section-number">3.11.1</span> Residual Analysis</h3>
+<div id="residual-analysis" class="section level3 hasAnchor" number="3.11.1">
+<h3><span class="header-section-number">3.11.1</span> Residual Analysis<a href="linear-regression-in-r.html#residual-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="linear-regression-in-r.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb82-2"><a href="linear-regression-in-r.html#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(reg)</span></code></pre></div>
 <p><img src="figure/unnamed-chunk-29-1.png" width="960" style="display: block; margin: auto;" /></p>
@@ -339,8 +338,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 </div>
-<div id="multiple-linear-regression" class="section level2" number="3.12">
-<h2><span class="header-section-number">3.12</span> Multiple Linear Regression</h2>
+<div id="multiple-linear-regression" class="section level2 hasAnchor" number="3.12">
+<h2><span class="header-section-number">3.12</span> Multiple Linear Regression<a href="linear-regression-in-r.html#multiple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>Regression models with more than one independent variable can be explored by using multiple regression models.</p></li>
 <li><p>We want to build a model for estimating sales based on the advertising budget invested in youtube, facebook and newspaper, as follow:</p></li>
@@ -369,8 +368,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 2.023 on 196 degrees of freedom
 ## Multiple R-squared:  0.8972, Adjusted R-squared:  0.8956 
 ## F-statistic: 570.3 on 3 and 196 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div id="how-to-test-if-your-linear-model-has-a-good-fit" class="section level3" number="3.12.1">
-<h3><span class="header-section-number">3.12.1</span> How to test if your linear model has a good fit?</h3>
+<div id="how-to-test-if-your-linear-model-has-a-good-fit" class="section level3 hasAnchor" number="3.12.1">
+<h3><span class="header-section-number">3.12.1</span> How to test if your linear model has a good fit?<a href="linear-regression-in-r.html#how-to-test-if-your-linear-model-has-a-good-fit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>Most common value to check how good is your model is the coefficient of determinations or <span class="math inline">\(R^2\)</span></p></li>
 <li><p>As we have seen in simple linear regression, the overall quality of the model can be assessed by examining the R-squared (<span class="math inline">\(R^2\)</span>).</p></li>
@@ -384,11 +383,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>The adjustment in the <strong>Adjusted R Square</strong> value in the summary output is a correction for the number of x variables included in the prediction model.</p></li>
 </ul>
 <p><strong>NOTE</strong></p>
-<p><em>In our example, with youtube, newspaper and facebook predictor variables, the adjusted</em> <span class="math inline">\(R^2 = 0.89\)</span>, <em>meaning that "89% of the variance in the measure of sales can be predicted by youtube, newspaper and facebook advertising budgets.</em></p>
+<p><em>In our example, with youtube, newspaper and facebook predictor variables, the adjusted</em> <span class="math inline">\(R^2 = 0.89\)</span>, <em>meaning that “89% of the variance in the measure of sales can be predicted by youtube, newspaper and facebook advertising budgets.</em></p>
 <p><em>This model is better than the simple linear model with only facebook, which had an adjusted</em> <span class="math inline">\(R^2\)</span> <em>of 0.05.</em></p>
 </div>
-<div id="dont-forget-to-look-at-the-residuals" class="section level3" number="3.12.2">
-<h3><span class="header-section-number">3.12.2</span> Don’t forget to look at the residuals</h3>
+<div id="dont-forget-to-look-at-the-residuals" class="section level3 hasAnchor" number="3.12.2">
+<h3><span class="header-section-number">3.12.2</span> Don’t forget to look at the residuals<a href="linear-regression-in-r.html#dont-forget-to-look-at-the-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>You can have a pretty good <span class="math inline">\(R^2\)</span> in your model, but let’s not rush to conclusions here.</p></li>
 <li><p>Ideally, when you plot the residuals, they should look random. Otherwise, it means that maybe there is a hidden pattern that the linear model is not considering.</p></li>
@@ -398,8 +397,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figure/unnamed-chunk-31-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="prediction-for-new-data-set" class="section level2" number="3.13">
-<h2><span class="header-section-number">3.13</span> Prediction for new data set</h2>
+<div id="prediction-for-new-data-set" class="section level2 hasAnchor" number="3.13">
+<h2><span class="header-section-number">3.13</span> Prediction for new data set<a href="linear-regression-in-r.html#prediction-for-new-data-set" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Using the above model, we can predict the sales for a new advertising budget.</li>
 </ul>
@@ -426,8 +425,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 21.29875 31.42354 51.67312</code></pre>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="references-1" class="section level2" number="3.14">
-<h2><span class="header-section-number">3.14</span> References</h2>
+<div id="references-1" class="section level2 hasAnchor" number="3.14">
+<h2><span class="header-section-number">3.14</span> References<a href="linear-regression-in-r.html#references-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><a href="https://www.scribbr.com/statistics/linear-regression-in-r/">https://www.scribbr.com/statistics/linear-regression-in-r/</a></p>
 <p><a href="https://statisticsbyjim.com/regression/heteroscedasticity-regression/" class="uri">https://statisticsbyjim.com/regression/heteroscedasticity-regression/</a></p>
 <div style="page-break-after: always;"></div>
@@ -502,7 +501,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

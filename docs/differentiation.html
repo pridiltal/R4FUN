@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Differentiation | Fundamentals of Mathematics and Statistics with R</title>
   <meta name="description" content="Chapter 2 Differentiation | Fundamentals of Mathematics and Statistics with R" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Differentiation | Fundamentals of Mathematics and Statistics with R" />
   <meta property="og:type" content="book" />
-  
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Dr. Priyanga D. Talagala" />
 
 
-<meta name="date" content="2022-01-16" />
+<meta name="date" content="2023-03-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="intro.html"/>
 <link rel="next" href="statistical-distributions.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -204,8 +203,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="differentiation" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Differentiation</h1>
+<div id="differentiation" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Differentiation<a href="differentiation.html#differentiation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>First, we take the equation as an expression</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="differentiation.html#cb6-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">expression</span>(x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <p>To calculate first derivative of <span class="math inline">\(f\)</span>, we use <code>D()</code> function and <code>x</code> to specify that derivation has to be carried out with respect to
@@ -236,8 +235,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-2"><a href="differentiation.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
 <span id="cb12-3"><a href="differentiation.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(q)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<div id="higher-derivatives" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Higher Derivatives</h2>
+<div id="higher-derivatives" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Higher Derivatives<a href="differentiation.html#higher-derivatives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The following R command can be used to find second derivative of the above <span class="math inline">\(f\)</span>.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="differentiation.html#cb13-1" aria-hidden="true" tabindex="-1"></a>f_2 <span class="ot">&lt;-</span> <span class="fu">D</span>(<span class="fu">D</span>(f, <span class="st">&quot;x&quot;</span>), <span class="st">&quot;x&quot;</span>)</span>
 <span id="cb13-2"><a href="differentiation.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(f_2)</span></code></pre></div>
@@ -267,8 +266,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb19-3"><a href="differentiation.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(r)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-10-3.png" width="288" /></p>
 </div>
-<div id="partial-derivatives" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Partial Derivatives</h2>
+<div id="partial-derivatives" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Partial Derivatives<a href="differentiation.html#partial-derivatives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If the expression is having more than one independent variable, we can calculate differentiation with respect to each of them.</p>
 <!-- https://www.datamentor.io/r-programming/3d-plot/-->
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="differentiation.html#cb20-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">expression</span>(x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> y<span class="sc">^</span><span class="dv">2</span>)</span>
@@ -355,7 +354,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
