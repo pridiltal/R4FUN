@@ -7,7 +7,8 @@ fig:norm5
 fig:norm6
 fig:gamma
 intro
-installing-r
+installing-r-and-rstudio
+posit-cloud
 rstudio-layout
 installing-an-r-package
 loading-an-r-packages
@@ -38,3 +39,9 @@ dont-forget-to-look-at-the-residuals
 prediction-for-new-data-set
 references-1
 mtcars
+intro1
+installing-r
+rstudio-layout-1
+installing-an-r-package-1
+loading-an-r-packages-1
+getting-started-with-r-1

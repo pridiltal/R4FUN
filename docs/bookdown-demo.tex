@@ -5,16 +5,19 @@
 \documentclass[
 ]{book}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -44,13 +47,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -58,7 +61,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -67,7 +70,7 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -124,7 +127,7 @@
 \bibliographystyle{apalike}
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
+\urlstyle{same}
 \hypersetup{
   pdftitle={Fundamentals of Mathematics and Statistics with R},
   pdfauthor={Dr.~Priyanga D. Talagala},
@@ -133,7 +136,7 @@
 
 \title{Fundamentals of Mathematics and Statistics with R}
 \author{Dr.~Priyanga D. Talagala}
-\date{2023-01-14}
+\date{2023-10-17}
 
 \begin{document}
 \maketitle
@@ -143,28 +146,38 @@
 \tableofcontents
 }
 \hypertarget{intro}{%
-\chapter{Introduction to R}\label{intro}}
+\chapter{Introduction to R, Rstudio and Posit Cloud}\label{intro}}
 
 \pagenumbering{arabic}
 
-\hypertarget{installing-r}{%
-\section{Installing R}\label{installing-r}}
+\hypertarget{installing-r-and-rstudio}{%
+\section{Installing R and Rstudio}\label{installing-r-and-rstudio}}
 
 \begin{itemize}
 \item
   \textbf{Step 1:} First download R freely from the Comprehensive R Archive Network (CRAN) \url{https://cran.r-project.org/}.
-  (At the moment of writing, R 4.2.2 is the latest version. Choose the most recent one.)
+  (At the moment of writing, R 4.3.1 is the latest version. Choose the most recent one.)
 \item
-  \textbf{Step 2:} Then install R Studio's IDE (stands for integrated development environment), a powerful user interface for R from \url{https://rstudio.com/products/rstudio/download/}. Get the Open Source Edition of RStudio Desktop. RStudio allows you to run R in a more user-friendly environment.
+  \textbf{Step 2:} Then install R Studio's IDE (stands for integrated development environment), a powerful user interface for R from {[}\url{https://posit.co/download/rstudio-desktop/}{]}(\url{https://posit.co/download/rstudio-desktop/}. Get the Open Source Edition of RStudio Desktop. RStudio allows you to run R in a more user-friendly environment.
 
   \begin{itemize}
   \item
     You need to install \textbf{both} R and Rstudio to use RStudio.
   \item
-    If you have a pre-existing installation of R and/or RStudio, I highly recommend that you re install both and get as current as possible.
+    If you have a pre-existing installation of R and/or RStudio, I highly recommend that you reinstall both and get as current as possible.
   \end{itemize}
 \item
   \textbf{Step 3:} Then open \textbf{Rstudio}.
+\end{itemize}
+
+\hypertarget{posit-cloud}{%
+\subsection{Posit Cloud}\label{posit-cloud}}
+
+\begin{itemize}
+\item
+  In 2022, RStudio changed its corporate name to Posit with the aim of expanding its focus beyond R to include users of Python and Visual Studio Code.
+\item
+  If you don't want to download or install R and R Studio, you can use RStudio on \protect\hyperlink{posit-cloud}{Posit Cloud} (\url{https://posit.cloud/}) for free.
 \end{itemize}
 
 \hypertarget{rstudio-layout}{%
@@ -240,14 +253,16 @@ The following the code installs the \texttt{tidyverse} package from CRAN
 \end{Shaded}
 
 \begin{verbatim}
-## -- Attaching packages --------------------------------------- tidyverse 1.3.2 --
-## v ggplot2 3.4.0      v purrr   1.0.1 
-## v tibble  3.1.8      v dplyr   1.0.10
-## v tidyr   1.2.1      v stringr 1.4.1 
-## v readr   2.1.3      v forcats 0.5.2 
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.2     v readr     2.1.4
+## v forcats   1.0.0     v stringr   1.5.0
+## v ggplot2   3.4.1     v tibble    3.2.1
+## v lubridate 1.9.2     v tidyr     1.3.0
+## v purrr     1.0.1     
 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 \end{verbatim}
 
 \begin{itemize}
@@ -736,10 +751,12 @@ If \(Z\sim N(0,1)\), then
 \section{Distributions in R}\label{distributions-in-r}}
 
 \begin{longtable}[]{@{}lll@{}}
-\toprule()
+\toprule\noalign{}
 Distribution & R name & Additional arguments \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 beta & \texttt{beta} & \texttt{shape1,\ shape\ 2,\ ncp} \\
 binomial & \texttt{binom} & \texttt{size,\ prob} \\
 Cauchy & \texttt{cauchy} & \texttt{location,\ scale} \\
@@ -759,7 +776,6 @@ Student's t & \texttt{t} & \texttt{df,\ ncp} \\
 uniform & \texttt{unif} & \texttt{min,\ max} \\
 Weibull & \texttt{weibull} & \texttt{shape,\ scale} \\
 Wilcoxon & \texttt{wilcox} & \texttt{m,\ n} \\
-\bottomrule()
 \end{longtable}
 
 \hypertarget{exercise}{%
@@ -1343,6 +1359,114 @@ t-test and Chi Squared: \url{https://rpubs.com/daheza/assignment3}
 code mtcars data : \url{http://psych.colorado.edu/~lharvey/P4165/P4165_2018_1_Spring/Material_2018_Spring_PSYC4165/Class_Handout_pdfs_2018_Spring_PSYC4165/R\%20guide_JMS\%20Revised_1_11_18.pdf}
 
 page 15
+
+\hypertarget{intro1}{%
+\chapter{Introduction to R}\label{intro1}}
+
+\pagenumbering{arabic}
+
+\hypertarget{installing-r}{%
+\section{Installing R}\label{installing-r}}
+
+\begin{itemize}
+\item
+  \textbf{Step 1:} First download R freely from the Comprehensive R Archive Network (CRAN) \url{https://cran.r-project.org/}.
+  (At the moment of writing, R 4.3.1 is the latest version. Choose the most recent one.)
+\item
+  \textbf{Step 2:} Then install R Studio's IDE (stands for integrated development environment), a powerful user interface for R from \url{https://rstudio.com/products/rstudio/download/}. Get the Open Source Edition of RStudio Desktop. RStudio allows you to run R in a more user-friendly environment.
+
+  \begin{itemize}
+  \item
+    You need to install \textbf{both} R and Rstudio to use RStudio.
+  \item
+    If you have a pre-existing installation of R and/or RStudio, I highly recommend that you re install both and get as current as possible.
+  \end{itemize}
+\item
+  \textbf{Step 3:} Then open \textbf{Rstudio}.
+\end{itemize}
+
+\hypertarget{rstudio-layout-1}{%
+\section{RStudio layout}\label{rstudio-layout-1}}
+
+The RStudio interface consists of four windows (see Figure 1 and 2).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Bottom left: console window (also called command window). \textbf{This is where you type and run all your R commands}
+\item
+  Top left: editor window (also called script window).
+\item
+  Top right: workspace / history window.
+\item
+  Bottom right: Files / plots / packages / help window.
+\end{enumerate}
+
+\begin{center}\includegraphics[width=1\linewidth]{figure/Rstudio1} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{figure/Rstudio2} \end{center}
+
+Now you are familiar with the layout. Let's begin with R basics.
+
+\hypertarget{installing-an-r-package-1}{%
+\section{Installing an R Package}\label{installing-an-r-package-1}}
+
+\begin{itemize}
+\item
+  The primary location for obtaining R packages is CRAN
+\item
+  Packages can be installed with the \texttt{install.packages()} function in R
+\item
+  To install a single package, pass the name of the package to the \texttt{install.packages()} function as the first argument
+\end{itemize}
+
+The following the code installs the \texttt{tidyverse} package from CRAN
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  This command downloads the \texttt{tidyverse} package from CRAN and installs it on your computer
+\item
+  Any packages on which this package depends will also be downloaded and installed
+\item
+  \textbf{Installing the tidyverse package could take several minutes. You only need to do this once}.
+\end{itemize}
+
+\hypertarget{loading-an-r-packages-1}{%
+\section{Loading an R Packages}\label{loading-an-r-packages-1}}
+
+\begin{itemize}
+\item
+  Installing a package does not make it immediately available to you in R; you must load the package
+\item
+  The \texttt{library()} function is used to load packages into R
+\item
+  The following code is used to load the tidyverse package into R
+\item
+  \textbf{NOTE:} Do not put the package name in quotes!
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Some packages produce messages when they are loaded (but some don't)
+\end{itemize}
+
+\hypertarget{getting-started-with-r-1}{%
+\section{Getting started with R}\label{getting-started-with-r-1}}
+
+\href{https://cran.r-project.org/doc/manuals/R-intro.pdf}{An Introduction to R: https://cran.r-project.org/doc/manuals/R-intro.pdf}
 
   \bibliography{book.bib,packages.bib}
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Fundamentals of Mathematics and Statistics with R</title>
   <meta name="description" content="Fundamentals of Mathematics and Statistics with R" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Fundamentals of Mathematics and Statistics with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Dr. Priyanga D. Talagala" />
 
 
-<meta name="date" content="2023-01-14" />
+<meta name="date" content="2024-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -136,9 +140,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Fundamentals of Mathematics and Statistics with R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R, Rstudio and Posit Cloud</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#installing-r"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> Installing R and Rstudio</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#posit-cloud"><i class="fa fa-check"></i><b>1.1.1</b> Posit Cloud</a></li>
+</ul></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#rstudio-layout"><i class="fa fa-check"></i><b>1.2</b> RStudio layout</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#installing-an-r-package"><i class="fa fa-check"></i><b>1.3</b> Installing an R Package</a></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#loading-an-r-packages"><i class="fa fa-check"></i><b>1.4</b> Loading an R Packages</a></li>
@@ -186,6 +193,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="mtcars.html"><a href="mtcars.html"><i class="fa fa-check"></i><b>4</b> mtcars</a></li>
 <li class="chapter" data-level="" data-path="references-2.html"><a href="references-2.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="5" data-path="intro1.html"><a href="intro1.html"><i class="fa fa-check"></i><b>5</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="intro1.html"><a href="intro1.html#installing-r"><i class="fa fa-check"></i><b>5.1</b> Installing R</a></li>
+<li class="chapter" data-level="5.2" data-path="intro1.html"><a href="intro1.html#rstudio-layout-1"><i class="fa fa-check"></i><b>5.2</b> RStudio layout</a></li>
+<li class="chapter" data-level="5.3" data-path="intro1.html"><a href="intro1.html#installing-an-r-package-1"><i class="fa fa-check"></i><b>5.3</b> Installing an R Package</a></li>
+<li class="chapter" data-level="5.4" data-path="intro1.html"><a href="intro1.html#loading-an-r-packages-1"><i class="fa fa-check"></i><b>5.4</b> Loading an R Packages</a></li>
+<li class="chapter" data-level="5.5" data-path="intro1.html"><a href="intro1.html#getting-started-with-r-1"><i class="fa fa-check"></i><b>5.5</b> Getting started with R</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -206,22 +221,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Fundamentals of Mathematics and Statistics with R</h1>
 <p class="author"><em>Dr. Priyanga D. Talagala</em></p>
-<p class="date"><em>2023-01-14</em></p>
+<p class="date"><em>2024-06-23</em></p>
 </div>
 <div id="intro" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction to R<a href="intro.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="installing-r" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Installing R<a href="intro.html#installing-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h1><span class="header-section-number">Chapter 1</span> Introduction to R, Rstudio and Posit Cloud<a href="intro.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="installing-r-and-rstudio" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Installing R and Rstudio<a href="intro.html#installing-r-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p><strong>Step 1:</strong> First download R freely from the Comprehensive R Archive Network (CRAN) <a href="https://cran.r-project.org/">https://cran.r-project.org/</a>.
-(At the moment of writing, R 4.2.2 is the latest version. Choose the most recent one.)</p></li>
-<li><p><strong>Step 2:</strong> Then install R Studio’s IDE (stands for integrated development environment), a powerful user interface for R from <a href="https://rstudio.com/products/rstudio/download/">https://rstudio.com/products/rstudio/download/</a>. Get the Open Source Edition of RStudio Desktop. RStudio allows you to run R in a more user-friendly environment.</p>
+(At the moment of writing, R 4.4.1 is the latest version. Choose the most recent one.)</p></li>
+<li><p><strong>Step 2:</strong> Then install R Studio’s IDE (stands for integrated development environment), a powerful user interface for R from [<a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>](<a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>. Get the Open Source Edition of RStudio Desktop. RStudio allows you to run R in a more user-friendly environment.</p>
 <ul>
 <li><p>You need to install <strong>both</strong> R and Rstudio to use RStudio.</p></li>
-<li><p>If you have a pre-existing installation of R and/or RStudio, I highly recommend that you re install both and get as current as possible.</p></li>
+<li><p>If you have a pre-existing installation of R and/or RStudio, I highly recommend that you reinstall both and get as current as possible.</p></li>
 </ul></li>
 <li><p><strong>Step 3:</strong> Then open <strong>Rstudio</strong>.</p></li>
 </ul>
+<div id="posit-cloud" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Posit Cloud<a href="intro.html#posit-cloud" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>In 2022, RStudio changed its corporate name to Posit with the aim of expanding its focus beyond R to include users of Python and Visual Studio Code.</p></li>
+<li><p>If you don’t want to download or install R and R Studio, you can use RStudio on <a href="intro.html#posit-cloud">Posit Cloud</a> (<a href="https://posit.cloud/" class="uri">https://posit.cloud/</a>) for free.</p></li>
+</ul>
+</div>
 </div>
 <div id="rstudio-layout" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> RStudio layout<a href="intro.html#rstudio-layout" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -245,7 +267,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>To install a single package, pass the name of the package to the <code>install.packages()</code> function as the first argument</p></li>
 </ul>
 <p>The following the code installs the <code>tidyverse</code> package from CRAN</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <ul>
 <li><p>This command downloads the <code>tidyverse</code> package from CRAN and installs it on your computer</p></li>
 <li><p>Any packages on which this package depends will also be downloaded and installed</p></li>
@@ -260,15 +282,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>The following code is used to load the tidyverse package into R</p></li>
 <li><p><strong>NOTE:</strong> Do not put the package name in quotes!</p></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.4.0      ✔ purrr   1.0.1 
-## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
-## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-## ✔ readr   2.1.3      ✔ forcats 0.5.2 
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 <ul>
 <li>Some packages produce messages when they are loaded (but some don’t)</li>
 </ul>
@@ -340,20 +364,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

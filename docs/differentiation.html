@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Differentiation | Fundamentals of Mathematics and Statistics with R</title>
   <meta name="description" content="Chapter 2 Differentiation | Fundamentals of Mathematics and Statistics with R" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Differentiation | Fundamentals of Mathematics and Statistics with R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Dr. Priyanga D. Talagala" />
 
 
-<meta name="date" content="2023-01-14" />
+<meta name="date" content="2023-10-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -136,9 +136,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Fundamentals of Mathematics and Statistics with R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R, Rstudio and Posit Cloud</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#installing-r"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> Installing R and Rstudio</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#posit-cloud"><i class="fa fa-check"></i><b>1.1.1</b> Posit Cloud</a></li>
+</ul></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#rstudio-layout"><i class="fa fa-check"></i><b>1.2</b> RStudio layout</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#installing-an-r-package"><i class="fa fa-check"></i><b>1.3</b> Installing an R Package</a></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#loading-an-r-packages"><i class="fa fa-check"></i><b>1.4</b> Loading an R Packages</a></li>
@@ -186,6 +189,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="mtcars.html"><a href="mtcars.html"><i class="fa fa-check"></i><b>4</b> mtcars</a></li>
 <li class="chapter" data-level="" data-path="references-2.html"><a href="references-2.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="5" data-path="intro1.html"><a href="intro1.html"><i class="fa fa-check"></i><b>5</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="intro1.html"><a href="intro1.html#installing-r"><i class="fa fa-check"></i><b>5.1</b> Installing R</a></li>
+<li class="chapter" data-level="5.2" data-path="intro1.html"><a href="intro1.html#rstudio-layout-1"><i class="fa fa-check"></i><b>5.2</b> RStudio layout</a></li>
+<li class="chapter" data-level="5.3" data-path="intro1.html"><a href="intro1.html#installing-an-r-package-1"><i class="fa fa-check"></i><b>5.3</b> Installing an R Package</a></li>
+<li class="chapter" data-level="5.4" data-path="intro1.html"><a href="intro1.html#loading-an-r-packages-1"><i class="fa fa-check"></i><b>5.4</b> Loading an R Packages</a></li>
+<li class="chapter" data-level="5.5" data-path="intro1.html"><a href="intro1.html#getting-started-with-r-1"><i class="fa fa-check"></i><b>5.5</b> Getting started with R</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -206,20 +217,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="differentiation" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Differentiation<a href="differentiation.html#differentiation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>First, we take the equation as an expression</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="differentiation.html#cb4-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">expression</span>(x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="differentiation.html#cb4-1" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">expression</span>(x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <p>To calculate first derivative of <span class="math inline">\(f\)</span>, we use <code>D()</code> function and <code>x</code> to specify that derivation has to be carried out with respect to
 <span class="math inline">\(x\)</span>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="differentiation.html#cb5-1" aria-hidden="true" tabindex="-1"></a>f_1 <span class="ot">&lt;-</span> <span class="fu">D</span>(f, <span class="st">&quot;x&quot;</span>)</span>
-<span id="cb5-2"><a href="differentiation.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(f_1)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="differentiation.html#cb5-1" tabindex="-1"></a>f_1 <span class="ot">&lt;-</span> <span class="fu">D</span>(f, <span class="st">&quot;x&quot;</span>)</span>
+<span id="cb5-2"><a href="differentiation.html#cb5-2" tabindex="-1"></a><span class="fu">print</span>(f_1)</span></code></pre></div>
 <pre><code>## 2 * x</code></pre>
 <p>Sketch the graph of <span class="math inline">\(f\)</span> and <span class="math inline">\(f^\prime\)</span></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="differentiation.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb7-2"><a href="differentiation.html#cb7-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
-<span id="cb7-3"><a href="differentiation.html#cb7-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">eval</span>(f)</span>
-<span id="cb7-4"><a href="differentiation.html#cb7-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
-<span id="cb7-5"><a href="differentiation.html#cb7-5" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">eval</span>(f_1)</span>
-<span id="cb7-6"><a href="differentiation.html#cb7-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y, y1)</span>
-<span id="cb7-7"><a href="differentiation.html#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="differentiation.html#cb7-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-2"><a href="differentiation.html#cb7-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb7-3"><a href="differentiation.html#cb7-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">eval</span>(f)</span>
+<span id="cb7-4"><a href="differentiation.html#cb7-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb7-5"><a href="differentiation.html#cb7-5" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">eval</span>(f_1)</span>
+<span id="cb7-6"><a href="differentiation.html#cb7-6" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y, y1)</span>
+<span id="cb7-7"><a href="differentiation.html#cb7-7" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
 <pre><code>##      x    y   y1
 ## 1 -1.0 1.00 -2.0
 ## 2 -0.9 0.81 -1.8
@@ -227,25 +238,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 -0.7 0.49 -1.4
 ## 5 -0.6 0.36 -1.2
 ## 6 -0.5 0.25 -1.0</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="differentiation.html#cb9-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="differentiation.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
-<span id="cb9-3"><a href="differentiation.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="differentiation.html#cb9-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="differentiation.html#cb9-2" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
+<span id="cb9-3"><a href="differentiation.html#cb9-3" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="differentiation.html#cb10-1" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y1)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="differentiation.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
-<span id="cb10-3"><a href="differentiation.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(q)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="differentiation.html#cb10-1" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y1)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="differentiation.html#cb10-2" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
+<span id="cb10-3"><a href="differentiation.html#cb10-3" tabindex="-1"></a><span class="fu">print</span>(q)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <div id="higher-derivatives" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Higher Derivatives<a href="differentiation.html#higher-derivatives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The following R command can be used to find second derivative of the above <span class="math inline">\(f\)</span>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="differentiation.html#cb11-1" aria-hidden="true" tabindex="-1"></a>f_2 <span class="ot">&lt;-</span> <span class="fu">D</span>(<span class="fu">D</span>(f, <span class="st">&quot;x&quot;</span>), <span class="st">&quot;x&quot;</span>)</span>
-<span id="cb11-2"><a href="differentiation.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(f_2)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="differentiation.html#cb11-1" tabindex="-1"></a>f_2 <span class="ot">&lt;-</span> <span class="fu">D</span>(<span class="fu">D</span>(f, <span class="st">&quot;x&quot;</span>), <span class="st">&quot;x&quot;</span>)</span>
+<span id="cb11-2"><a href="differentiation.html#cb11-2" tabindex="-1"></a><span class="fu">print</span>(f_2)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="differentiation.html#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
-<span id="cb13-2"><a href="differentiation.html#cb13-2" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">eval</span>(f_2)</span>
-<span id="cb13-3"><a href="differentiation.html#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="differentiation.html#cb13-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y, y1, y2)</span>
-<span id="cb13-5"><a href="differentiation.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="differentiation.html#cb13-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb13-2"><a href="differentiation.html#cb13-2" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">eval</span>(f_2)</span>
+<span id="cb13-3"><a href="differentiation.html#cb13-3" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="differentiation.html#cb13-4" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y, y1, y2)</span>
+<span id="cb13-5"><a href="differentiation.html#cb13-5" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
 <pre><code>##      x    y   y1 y2
 ## 1 -1.0 1.00 -2.0  2
 ## 2 -0.9 0.81 -1.8  2
@@ -253,37 +264,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 -0.7 0.49 -1.4  2
 ## 5 -0.6 0.36 -1.2  2
 ## 6 -0.5 0.25 -1.0  2</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="differentiation.html#cb15-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="differentiation.html#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
-<span id="cb15-3"><a href="differentiation.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="differentiation.html#cb15-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="differentiation.html#cb15-2" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
+<span id="cb15-3"><a href="differentiation.html#cb15-3" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-10-1.png" width="288" /></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="differentiation.html#cb16-1" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y1)) <span class="sc">+</span></span>
-<span id="cb16-2"><a href="differentiation.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb16-3"><a href="differentiation.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(q)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="differentiation.html#cb16-1" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y1)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="differentiation.html#cb16-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb16-3"><a href="differentiation.html#cb16-3" tabindex="-1"></a><span class="fu">print</span>(q)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-10-2.png" width="288" /></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="differentiation.html#cb17-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y2)) <span class="sc">+</span></span>
-<span id="cb17-2"><a href="differentiation.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb17-3"><a href="differentiation.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(r)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="differentiation.html#cb17-1" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y2)) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="differentiation.html#cb17-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb17-3"><a href="differentiation.html#cb17-3" tabindex="-1"></a><span class="fu">print</span>(r)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-10-3.png" width="288" /></p>
 </div>
 <div id="partial-derivatives" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Partial Derivatives<a href="differentiation.html#partial-derivatives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If the expression is having more than one independent variable, we can calculate differentiation with respect to each of them.</p>
 <!-- https://www.datamentor.io/r-programming/3d-plot/-->
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="differentiation.html#cb18-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">expression</span>(x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> y<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb18-2"><a href="differentiation.html#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="differentiation.html#cb18-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="at">length =</span> <span class="dv">20</span>)</span>
-<span id="cb18-4"><a href="differentiation.html#cb18-4" aria-hidden="true" tabindex="-1"></a>surface <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb18-5"><a href="differentiation.html#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">eval</span>(f)</span>
-<span id="cb18-6"><a href="differentiation.html#cb18-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb18-7"><a href="differentiation.html#cb18-7" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">outer</span>(x, y, surface)</span>
-<span id="cb18-8"><a href="differentiation.html#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">persp</span>(x, y, z)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="differentiation.html#cb18-1" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">expression</span>(x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> y<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb18-2"><a href="differentiation.html#cb18-2" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="differentiation.html#cb18-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="at">length =</span> <span class="dv">20</span>)</span>
+<span id="cb18-4"><a href="differentiation.html#cb18-4" tabindex="-1"></a>surface <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb18-5"><a href="differentiation.html#cb18-5" tabindex="-1"></a>  <span class="fu">eval</span>(f)</span>
+<span id="cb18-6"><a href="differentiation.html#cb18-6" tabindex="-1"></a>}</span>
+<span id="cb18-7"><a href="differentiation.html#cb18-7" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">outer</span>(x, y, surface)</span>
+<span id="cb18-8"><a href="differentiation.html#cb18-8" tabindex="-1"></a><span class="fu">persp</span>(x, y, z)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>Differentiate with respect to <code>x</code></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="differentiation.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">D</span>(f, <span class="st">&quot;x&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="differentiation.html#cb19-1" tabindex="-1"></a><span class="fu">D</span>(f, <span class="st">&quot;x&quot;</span>)</span></code></pre></div>
 <pre><code>## 2 * x</code></pre>
 <p>Differentiate with respect to <code>y</code></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="differentiation.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">D</span>(f, <span class="st">&quot;y&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="differentiation.html#cb21-1" tabindex="-1"></a><span class="fu">D</span>(f, <span class="st">&quot;y&quot;</span>)</span></code></pre></div>
 <pre><code>## 2 * y</code></pre>
 
 </div>
